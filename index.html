@@ -1,3 +1,264 @@
-<H1>HANUMANHARI</H1><P>JADSCANCKANA</P>
-<A HREF="https://www.myntra.com">MYNTRA</A>
-<IMG SRC="hari.jpg" ALT="HARI">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Tutorial - Products Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f6f9;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 12px;
+        }
+        th {
+            background-color: #ff3f6c;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .in-stock {
+            color: green;
+            font-weight: bold;
+        }
+        .out-of-stock {
+            color: red;
+            font-weight: bold;
+        }
+        .user-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="user-section">
+        <h1>HANUMANHARI</h1>
+        <p>JADSCANCKANA</p>
+        <p><a href="https://www.myntra.com" target="_blank">MYNTRA STORE</a></p>
+        <img src="hari.jpg" alt="HARI" width="150">
+    </div>
+
+    <hr>
+
+    <h2>📦 Products Management (CRUD)</h2>
+
+    <div class="form-container" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px;">
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px;">
+            <div>
+                <label for="txtId"><strong>Product ID (Auto):</strong></label><br>
+                <input type="text" id="txtId" readonly placeholder="Auto Generated" style="padding: 8px; width: 120px; background-color: #eee; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div>
+                <label for="txtName"><strong>Product Name:</strong></label><br>
+                <input type="text" id="txtName" placeholder="Enter Product Name" style="padding: 8px; width: 220px; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div>
+                <label for="txtCategory"><strong>Category:</strong></label><br>
+                <input type="text" id="txtCategory" placeholder="e.g. Clothing, Footwear" style="padding: 8px; width: 160px; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div>
+                <label for="txtPrice"><strong>Price (₹):</strong></label><br>
+                <input type="number" id="txtPrice" placeholder="Enter Price" style="padding: 8px; width: 130px; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div>
+                <label for="txtStock"><strong>Stock Status:</strong></label><br>
+                <select id="txtStock" style="padding: 8px; width: 150px; border: 1px solid #ccc; border-radius: 4px;">
+                    <option value="In Stock">In Stock</option>
+                    <option value="Out of Stock">Out of Stock</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+            <button onclick="saveProduct()" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">💾 Save</button>
+            <button onclick="updateProduct()" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">✏️ Update</button>
+            <button onclick="deleteProduct()" style="padding: 10px 20px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">🗑️ Delete</button>
+            <button onclick="clearFields()" style="padding: 10px 20px; background-color: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;">🔄 Clear</button>
+        </div>
+        <p id="msgBox" style="margin-top: 10px; font-weight: bold; color: red;"></p>
+    </div>
+
+    <table id="productsTable">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Price (₹)</th>
+                <th>Stock Status</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr onclick="populateToTextBox(this)">
+                <td>101</td>
+                <td>Men's Casual Cotton Shirt</td>
+                <td>Clothing</td>
+                <td>999</td>
+                <td><span class="in-stock">In Stock</span></td>
+            </tr>
+            <tr onclick="populateToTextBox(this)">
+                <td>102</td>
+                <td>Running Sports Shoes</td>
+                <td>Footwear</td>
+                <td>1999</td>
+                <td><span class="in-stock">In Stock</span></td>
+            </tr>
+            <tr onclick="populateToTextBox(this)">
+                <td>103</td>
+                <td>Digital Smart Watch</td>
+                <td>Accessories</td>
+                <td>2499</td>
+                <td><span class="out-of-stock">Out of Stock</span></td>
+            </tr>
+            <tr onclick="populateToTextBox(this)">
+                <td>104</td>
+                <td>Waterproof Travel Backpack</td>
+                <td>Bags</td>
+                <td>1299</td>
+                <td><span class="in-stock">In Stock</span></td>
+            </tr>
+            <tr onclick="populateToTextBox(this)">
+                <td>105</td>
+                <td>Classic Denim Jeans</td>
+                <td>Clothing</td>
+                <td>1499</td>
+                <td><span class="in-stock">In Stock</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        let autoIdCounter = 106;
+        let selectedRow = null;
+
+        function showMessage(msg, isError = true) {
+            const msgBox = document.getElementById("msgBox");
+            msgBox.innerText = msg;
+            msgBox.style.color = isError ? "red" : "green";
+            setTimeout(() => { msgBox.innerText = ""; }, 3000);
+        }
+
+        // 1. Check if product textbox is empty before saving
+        function saveProduct() {
+            const name = document.getElementById("txtName").value.trim();
+            const category = document.getElementById("txtCategory").value.trim();
+            const price = document.getElementById("txtPrice").value.trim();
+            const stock = document.getElementById("txtStock").value;
+
+            // If condition: check if empty
+            if (name === "") {
+                showMessage("⚠️ Product Name is empty! Please enter product name.");
+                document.getElementById("txtName").focus();
+                return;
+            }
+
+            const tbody = document.getElementById("tableBody");
+            const newRow = document.createElement("tr");
+            newRow.onclick = function() { populateToTextBox(this); };
+
+            const statusClass = stock === "In Stock" ? "in-stock" : "out-of-stock";
+
+            newRow.innerHTML = `
+                <td>${autoIdCounter++}</td>
+                <td>${name}</td>
+                <td>${category || 'General'}</td>
+                <td>${price || '0'}</td>
+                <td><span class="${statusClass}">${stock}</span></td>
+            `;
+
+            tbody.appendChild(newRow);
+            showMessage("✅ Product saved successfully!", false);
+            clearFields();
+        }
+
+        // 2. Bring product info from gridview/table into textboxes
+        function populateToTextBox(row) {
+            selectedRow = row;
+            const cells = row.getElementsByTagName("td");
+            document.getElementById("txtId").value = cells[0].innerText;
+            document.getElementById("txtName").value = cells[1].innerText;
+            document.getElementById("txtCategory").value = cells[2].innerText;
+            document.getElementById("txtPrice").value = cells[3].innerText;
+            document.getElementById("txtStock").value = cells[4].innerText.includes("In Stock") ? "In Stock" : "Out of Stock";
+            
+            // Highlight selected row
+            Array.from(document.querySelectorAll("#tableBody tr")).forEach(r => r.style.backgroundColor = "");
+            row.style.backgroundColor = "#fff3cd";
+        }
+
+        // 3. Update product
+        function updateProduct() {
+            if (!selectedRow) {
+                showMessage("⚠️ Please select a product row from the table first!");
+                return;
+            }
+            const name = document.getElementById("txtName").value.trim();
+            if (name === "") {
+                showMessage("⚠️ Product Name cannot be empty!");
+                return;
+            }
+
+            const category = document.getElementById("txtCategory").value.trim();
+            const price = document.getElementById("txtPrice").value.trim();
+            const stock = document.getElementById("txtStock").value;
+            const statusClass = stock === "In Stock" ? "in-stock" : "out-of-stock";
+
+            const cells = selectedRow.getElementsByTagName("td");
+            cells[1].innerText = name;
+            cells[2].innerText = category || 'General';
+            cells[3].innerText = price || '0';
+            cells[4].innerHTML = `<span class="${statusClass}">${stock}</span>`;
+
+            showMessage("✅ Product updated successfully!", false);
+            clearFields();
+        }
+
+        // 4. Delete product
+        function deleteProduct() {
+            if (!selectedRow) {
+                showMessage("⚠️ Please select a product row to delete!");
+                return;
+            }
+            if (confirm("Are you sure you want to delete this product?")) {
+                selectedRow.remove();
+                showMessage("🗑️ Product deleted successfully!", false);
+                clearFields();
+            }
+        }
+
+        function clearFields() {
+            document.getElementById("txtId").value = "";
+            document.getElementById("txtName").value = "";
+            document.getElementById("txtCategory").value = "";
+            document.getElementById("txtPrice").value = "";
+            document.getElementById("txtStock").value = "In Stock";
+            if (selectedRow) {
+                selectedRow.style.backgroundColor = "";
+                selectedRow = null;
+            }
+        }
+    </script>
+</body>
+</html>
