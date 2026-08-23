@@ -1,264 +1,492 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Tutorial - Products Table</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f6f9;
-        }
-        h1, h2 {
-            color: #333;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            background-color: #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 12px;
-        }
-        th {
-            background-color: #ff3f6c;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        .in-stock {
-            color: green;
-            font-weight: bold;
-        }
-        .out-of-stock {
-            color: red;
-            font-weight: bold;
-        }
-        .user-section {
-            margin-bottom: 20px;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>தமிழ் வேத ஜோதிட ஜாதக கணிப்பான் | Vedic Astrology Horoscope Generator</title>
+  <meta name="description" content="துல்லியமான வானியல் கணிப்புகள் கொண்டு உங்கள் பிறந்த ஜாதகம், ராசி மற்றும் நவாம்ச கட்டங்கள், விம்சோத்தரி தசா புத்தி, பஞ்சாங்கம் மற்றும் பலன்களை அறியும் இலவச தமிழ் இணையதளம்.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@400;500;600;700;800&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="user-section">
-        <h1>HANUMANHARI</h1>
-        <p>JADSCANCKANA</p>
-        <p><a href="https://www.myntra.com" target="_blank">MYNTRA STORE</a></p>
-        <img src="hari.jpg" alt="HARI" width="150">
-    </div>
+  <div class="app-container">
+    
+    <!-- Top Header -->
+    <header class="header-wrapper">
+      <div class="header-decor-left">🔱</div>
+      <div class="om-symbol">ௐ</div>
+      <h1 class="header-title">தமிழ் வேத ஜோதிட ஜாதக கணிப்பான்</h1>
+      <p class="header-subtitle">துல்லியமான வானியல் கணிப்பு • லஹிரி அயனாம்சம் • ராசி & நவாம்ச கட்டங்கள் • தசா புத்தி • விரிவான பலன்கள்</p>
+      
+      <div class="header-tools">
+        <button type="button" class="tool-btn" id="themeToggleBtn">
+          <i class="fa-solid fa-moon"></i> <span id="themeText">இரவுப் பார்வை</span>
+        </button>
+        <button type="button" class="tool-btn" id="printBtn">
+          <i class="fa-solid fa-print"></i> <span>ஜாதகத்தை அச்சிடுக / PDF</span>
+        </button>
+        <button type="button" class="tool-btn" id="nowTransitBtn">
+          <i class="fa-solid fa-clock"></i> <span>இன்றைய கோள் நிலை (Transit)</span>
+        </button>
+      </div>
+      <div class="header-decor-right">卐</div>
+    </header>
 
-    <hr>
-
-    <h2>📦 Products Management (CRUD)</h2>
-
-    <div class="form-container" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px;">
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px;">
-            <div>
-                <label for="txtId"><strong>Product ID (Auto):</strong></label><br>
-                <input type="text" id="txtId" readonly placeholder="Auto Generated" style="padding: 8px; width: 120px; background-color: #eee; border: 1px solid #ccc; border-radius: 4px;">
-            </div>
-            <div>
-                <label for="txtName"><strong>Product Name:</strong></label><br>
-                <input type="text" id="txtName" placeholder="Enter Product Name" style="padding: 8px; width: 220px; border: 1px solid #ccc; border-radius: 4px;">
-            </div>
-            <div>
-                <label for="txtCategory"><strong>Category:</strong></label><br>
-                <input type="text" id="txtCategory" placeholder="e.g. Clothing, Footwear" style="padding: 8px; width: 160px; border: 1px solid #ccc; border-radius: 4px;">
-            </div>
-            <div>
-                <label for="txtPrice"><strong>Price (₹):</strong></label><br>
-                <input type="number" id="txtPrice" placeholder="Enter Price" style="padding: 8px; width: 130px; border: 1px solid #ccc; border-radius: 4px;">
-            </div>
-            <div>
-                <label for="txtStock"><strong>Stock Status:</strong></label><br>
-                <select id="txtStock" style="padding: 8px; width: 150px; border: 1px solid #ccc; border-radius: 4px;">
-                    <option value="In Stock">In Stock</option>
-                    <option value="Out of Stock">Out of Stock</option>
-                </select>
-            </div>
+    <!-- Main Layout Grid -->
+    <main class="main-grid">
+      
+      <!-- Left Column: Input Form -->
+      <section class="form-card">
+        <div class="card-heading">
+          <h2><i class="fa-solid fa-id-card"></i> பிறந்த விவரங்கள் (Birth Data)</h2>
         </div>
 
-        <div style="display: flex; gap: 10px;">
-            <button onclick="saveProduct()" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">💾 Save</button>
-            <button onclick="updateProduct()" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">✏️ Update</button>
-            <button onclick="deleteProduct()" style="padding: 10px 20px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">🗑️ Delete</button>
-            <button onclick="clearFields()" style="padding: 10px 20px; background-color: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;">🔄 Clear</button>
+        <!-- Sample Quick Presets -->
+        <div class="preset-buttons">
+          <span style="font-size: 11px; color: var(--text-muted); align-self: center; margin-right: 2px;">மாதிரிகள்:</span>
+          <button type="button" class="preset-btn" data-preset="abdul_kalam">டாக்டர் ஏ.பி.ஜே கலாம்</button>
+          <button type="button" class="preset-btn" data-preset="vivekananda">சுவாமி விவேகானந்தர்</button>
+          <button type="button" class="preset-btn" data-preset="sample_today">இன்று பிறந்தவர்</button>
         </div>
-        <p id="msgBox" style="margin-top: 10px; font-weight: bold; color: red;"></p>
-    </div>
 
-    <table id="productsTable">
-        <thead>
-            <tr>
-                <th>Product ID</th>
-                <th>Product Name</th>
-                <th>Category</th>
-                <th>Price (₹)</th>
-                <th>Stock Status</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            <tr onclick="populateToTextBox(this)">
-                <td>101</td>
-                <td>Men's Casual Cotton Shirt</td>
-                <td>Clothing</td>
-                <td>999</td>
-                <td><span class="in-stock">In Stock</span></td>
-            </tr>
-            <tr onclick="populateToTextBox(this)">
-                <td>102</td>
-                <td>Running Sports Shoes</td>
-                <td>Footwear</td>
-                <td>1999</td>
-                <td><span class="in-stock">In Stock</span></td>
-            </tr>
-            <tr onclick="populateToTextBox(this)">
-                <td>103</td>
-                <td>Digital Smart Watch</td>
-                <td>Accessories</td>
-                <td>2499</td>
-                <td><span class="out-of-stock">Out of Stock</span></td>
-            </tr>
-            <tr onclick="populateToTextBox(this)">
-                <td>104</td>
-                <td>Waterproof Travel Backpack</td>
-                <td>Bags</td>
-                <td>1299</td>
-                <td><span class="in-stock">In Stock</span></td>
-            </tr>
-            <tr onclick="populateToTextBox(this)">
-                <td>105</td>
-                <td>Classic Denim Jeans</td>
-                <td>Clothing</td>
-                <td>1499</td>
-                <td><span class="in-stock">In Stock</span></td>
-            </tr>
-        </tbody>
-    </table>
+        <form id="horoscopeForm" autocomplete="off">
+          
+          <!-- Name -->
+          <div class="form-group">
+            <label for="personName"><i class="fa-solid fa-user"></i> பெயர் (Name)</label>
+            <div class="input-with-icon">
+              <i class="fa-regular fa-user"></i>
+              <input type="text" id="personName" class="form-control" placeholder="எ.கா: ராமன் / செல்வி" value="ஹரி பிரசாத்">
+            </div>
+          </div>
 
-    <script>
-        let autoIdCounter = 106;
-        let selectedRow = null;
-
-        function showMessage(msg, isError = true) {
-            const msgBox = document.getElementById("msgBox");
-            msgBox.innerText = msg;
-            msgBox.style.color = isError ? "red" : "green";
-            setTimeout(() => { msgBox.innerText = ""; }, 3000);
-        }
-
-        // 1. Check if product textbox is empty before saving
-        function saveProduct() {
-            const name = document.getElementById("txtName").value.trim();
-            const category = document.getElementById("txtCategory").value.trim();
-            const price = document.getElementById("txtPrice").value.trim();
-            const stock = document.getElementById("txtStock").value;
-
-            // If condition: check if empty
-            if (name === "") {
-                showMessage("⚠️ Product Name is empty! Please enter product name.");
-                document.getElementById("txtName").focus();
-                return;
-            }
-
-            const tbody = document.getElementById("tableBody");
-            const newRow = document.createElement("tr");
-            newRow.onclick = function() { populateToTextBox(this); };
-
-            const statusClass = stock === "In Stock" ? "in-stock" : "out-of-stock";
-
-            newRow.innerHTML = `
-                <td>${autoIdCounter++}</td>
-                <td>${name}</td>
-                <td>${category || 'General'}</td>
-                <td>${price || '0'}</td>
-                <td><span class="${statusClass}">${stock}</span></td>
-            `;
-
-            tbody.appendChild(newRow);
-            showMessage("✅ Product saved successfully!", false);
-            clearFields();
-        }
-
-        // 2. Bring product info from gridview/table into textboxes
-        function populateToTextBox(row) {
-            selectedRow = row;
-            const cells = row.getElementsByTagName("td");
-            document.getElementById("txtId").value = cells[0].innerText;
-            document.getElementById("txtName").value = cells[1].innerText;
-            document.getElementById("txtCategory").value = cells[2].innerText;
-            document.getElementById("txtPrice").value = cells[3].innerText;
-            document.getElementById("txtStock").value = cells[4].innerText.includes("In Stock") ? "In Stock" : "Out of Stock";
+          <!-- Date & Gender Row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="birthDate"><i class="fa-solid fa-calendar-days"></i> பிறந்த தேதி (DOB)</label>
+              <input type="date" id="birthDate" class="form-control" required>
+            </div>
             
-            // Highlight selected row
-            Array.from(document.querySelectorAll("#tableBody tr")).forEach(r => r.style.backgroundColor = "");
-            row.style.backgroundColor = "#fff3cd";
-        }
+            <div class="form-group">
+              <label for="gender"><i class="fa-solid fa-venus-mars"></i> பாலினம் (Gender)</label>
+              <select id="gender" class="form-control">
+                <option value="male">ஆண் (Male)</option>
+                <option value="female">பெண் (Female)</option>
+                <option value="other">மற்றவை (Other)</option>
+              </select>
+            </div>
+          </div>
 
-        // 3. Update product
-        function updateProduct() {
-            if (!selectedRow) {
-                showMessage("⚠️ Please select a product row from the table first!");
-                return;
-            }
-            const name = document.getElementById("txtName").value.trim();
-            if (name === "") {
-                showMessage("⚠️ Product Name cannot be empty!");
-                return;
-            }
+          <!-- Time of Birth Row -->
+          <div class="form-group">
+            <label><i class="fa-solid fa-clock"></i> பிறந்த நேரம் (Time of Birth)</label>
+            <div class="form-row-3">
+              <div>
+                <select id="birthHour" class="form-control" title="மணி (Hour)">
+                  <!-- Populated by JS (01 to 12) -->
+                </select>
+              </div>
+              <div>
+                <select id="birthMinute" class="form-control" title="நிமிடம் (Minute)">
+                  <!-- Populated by JS (00 to 59) -->
+                </select>
+              </div>
+              <div>
+                <select id="birthAmPm" class="form-control" title="முற்பகல் / பிற்பகல்">
+                  <option value="AM">காலை (AM)</option>
+                  <option value="PM" selected>மாலை / இரவு (PM)</option>
+                </select>
+              </div>
+            </div>
+          </div>
 
-            const category = document.getElementById("txtCategory").value.trim();
-            const price = document.getElementById("txtPrice").value.trim();
-            const stock = document.getElementById("txtStock").value;
-            const statusClass = stock === "In Stock" ? "in-stock" : "out-of-stock";
+          <!-- Place of Birth -->
+          <div class="form-group">
+            <label for="birthCity"><i class="fa-solid fa-location-dot"></i> பிறந்த இடம் (Place of Birth)</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-city"></i>
+              <select id="birthCity" class="form-control">
+                <!-- Grouped list of Tamil Nadu, Indian, and Global Cities populated by JS -->
+              </select>
+            </div>
+            
+            <div class="location-extra">
+              <button type="button" class="geo-btn" id="currentGeoBtn">
+                <i class="fa-solid fa-crosshairs"></i> எனது இருப்பிடம் (GPS)
+              </button>
+              <button type="button" class="custom-coords-toggle" id="toggleCoordsBtn">
+                + வேறு அட்ச/தீர்க்கரேகை (Lat/Long)
+              </button>
+            </div>
 
-            const cells = selectedRow.getElementsByTagName("td");
-            cells[1].innerText = name;
-            cells[2].innerText = category || 'General';
-            cells[3].innerText = price || '0';
-            cells[4].innerHTML = `<span class="${statusClass}">${stock}</span>`;
+            <!-- Custom Coordinates Expandable -->
+            <div class="custom-coords-box" id="customCoordsBox">
+              <div class="form-row" style="margin-bottom: 8px;">
+                <div>
+                  <label for="customLat" style="font-size: 11px;">அட்சரேகை (Lat °N)</label>
+                  <input type="number" step="0.0001" id="customLat" class="form-control" value="13.0827" style="padding: 6px 8px; font-size: 12px;">
+                </div>
+                <div>
+                  <label for="customLng" style="font-size: 11px;">தீர்க்கரேகை (Long °E)</label>
+                  <input type="number" step="0.0001" id="customLng" class="form-control" value="80.2707" style="padding: 6px 8px; font-size: 12px;">
+                </div>
+              </div>
+              <div>
+                <label for="customTz" style="font-size: 11px;">நேர மண்டலம் (Timezone UTC Offset)</label>
+                <input type="number" step="0.25" id="customTz" class="form-control" value="5.5" style="padding: 6px 8px; font-size: 12px;">
+              </div>
+            </div>
+          </div>
 
-            showMessage("✅ Product updated successfully!", false);
-            clearFields();
-        }
+          <!-- Ayanamsa & Options -->
+          <div class="form-group">
+            <label for="ayanamsaType"><i class="fa-solid fa-compass"></i> அயனாம்சம் (Ayanamsa System)</label>
+            <select id="ayanamsaType" class="form-control">
+              <option value="lahiri" selected>லஹிரி அயனாம்சம் (NC Lahiri / Chitra Paksha) - பரிந்துரை</option>
+              <option value="raman">பி.வி. ராமன் அயனாம்சம் (B.V. Raman)</option>
+              <option value="krishnamurti">கே.பி அயனாம்சம் (KP Krishnamurti)</option>
+            </select>
+          </div>
 
-        // 4. Delete product
-        function deleteProduct() {
-            if (!selectedRow) {
-                showMessage("⚠️ Please select a product row to delete!");
-                return;
-            }
-            if (confirm("Are you sure you want to delete this product?")) {
-                selectedRow.remove();
-                showMessage("🗑️ Product deleted successfully!", false);
-                clearFields();
-            }
-        }
+          <!-- Submit Button -->
+          <button type="submit" class="btn-submit" id="calculateBtn">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> ஜாதகம் கணக்கிடுக (Calculate Chart)
+          </button>
 
-        function clearFields() {
-            document.getElementById("txtId").value = "";
-            document.getElementById("txtName").value = "";
-            document.getElementById("txtCategory").value = "";
-            document.getElementById("txtPrice").value = "";
-            document.getElementById("txtStock").value = "In Stock";
-            if (selectedRow) {
-                selectedRow.style.backgroundColor = "";
-                selectedRow = null;
-            }
-        }
-    </script>
+        </form>
+
+      </section>
+
+      <!-- Right Column: Results Dashboard -->
+      <section class="results-container" id="resultsSection">
+        
+        <!-- Summary Quick Banner -->
+        <div class="summary-banner" id="summaryBanner">
+          <div class="summary-item">
+            <span class="summary-label">லக்னம் (Lagna)</span>
+            <span class="summary-value" id="sumLagna">-</span>
+            <span class="summary-sub" id="sumLagnaPada">-</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">ராசி (Moon Sign)</span>
+            <span class="summary-value" id="sumRasi">-</span>
+            <span class="summary-sub" id="sumRasiLord">-</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">நட்சத்திரம் (Star)</span>
+            <span class="summary-value" id="sumStar">-</span>
+            <span class="summary-sub" id="sumStarPada">-</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">திதி & பக்ஷம் (Thithi)</span>
+            <span class="summary-value" id="sumThithi">-</span>
+            <span class="summary-sub" id="sumPaksham">-</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">யோகம் & கரணம்</span>
+            <span class="summary-value" id="sumYoga">-</span>
+            <span class="summary-sub" id="sumKarana">-</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">பிறந்த தசா இருப்பு</span>
+            <span class="summary-value" id="sumDasaBalance">-</span>
+            <span class="summary-sub" id="sumDasaLord">-</span>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs-nav">
+          <button type="button" class="tab-btn active" data-tab="tab-charts">
+            <i class="fa-solid fa-chart-pie"></i> ராசி & நவாம்ச கட்டங்கள்
+          </button>
+          <button type="button" class="tab-btn" data-tab="tab-planets">
+            <i class="fa-solid fa-table-list"></i> கிரக நிலைகள் & பார்வைகள்
+          </button>
+          <button type="button" class="tab-btn" data-tab="tab-panchangam">
+            <i class="fa-solid fa-sun"></i> பஞ்சாங்கக் குறிப்புகள்
+          </button>
+          <button type="button" class="tab-btn" data-tab="tab-dasa">
+            <i class="fa-solid fa-timeline"></i> தசா புத்தி அட்டவணை
+          </button>
+          <button type="button" class="tab-btn" data-tab="tab-predictions">
+            <i class="fa-solid fa-scroll"></i> ஜாதகப் பலன்கள் & யோகங்கள்
+          </button>
+          <button type="button" class="tab-btn" data-tab="tab-remedies">
+            <i class="fa-solid fa-gem"></i> அதிர்ஷ்டம் & பரிகாரங்கள்
+          </button>
+        </div>
+
+        <!-- Tab 1: Charts (Rasi & Navamsam) -->
+        <div class="tab-pane active" id="tab-charts">
+          <div class="charts-wrapper dual">
+            
+            <!-- Rasi Chart (D1) -->
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <h3><i class="fa-solid fa-ring"></i> ராசி கட்டம் (Rasi Chart - D1)</h3>
+                <span class="chart-badge">லக்ன ரீதியாக</span>
+              </div>
+              <div class="south-chart-container" id="rasiChartContainer">
+                <!-- 12 houses + center box generated dynamically -->
+              </div>
+              <p style="font-size: 11px; color: var(--text-muted); margin-top: 10px;">
+                💡 குறிப்பு: கட்டத்தின் மீது கிளிக் செய்து அந்த பாவத்தின் விரிவான பலன்களைக் காணலாம்.
+              </p>
+            </div>
+
+            <!-- Navamsha Chart (D9) -->
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <h3><i class="fa-solid fa-certificate"></i> நவாம்ச கட்டம் (Navamsha - D9)</h3>
+                <span class="chart-badge">நுண்ணிய கணிப்பு</span>
+              </div>
+              <div class="south-chart-container" id="navamshaChartContainer">
+                <!-- 12 houses + center box generated dynamically -->
+              </div>
+              <p style="font-size: 11px; color: var(--text-muted); margin-top: 10px;">
+                நவாம்ச லக்னம் மற்றும் கிரக பலம் அறியும் சூட்சுமக் கட்டம்.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Bhava Chalit Summary Card -->
+          <div class="chart-card" style="margin-top: 20px;">
+            <div class="chart-card-header">
+              <h3><i class="fa-solid fa-layer-group"></i> 12 பாவங்களின் சுருக்கம் (12 Bhavas Overview)</h3>
+              <span class="chart-badge">லக்னம் முதல் வீடுகள்</span>
+            </div>
+            <div id="bhavaSummaryGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; text-align: left;">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Planetary Positions Table -->
+        <div class="tab-pane" id="tab-planets">
+          <div class="table-card">
+            <h3 style="color: var(--text-gold-light); margin-bottom: 12px; font-size: 16px;">
+              <i class="fa-solid fa-list-check"></i> துல்லிய கிரக நிலைகள் மற்றும் அம்சங்கள் (Planetary Longitudes)
+            </h3>
+            <table class="astro-table" id="planetsTable">
+              <thead>
+                <tr>
+                  <th>கிரகம் (Planet)</th>
+                  <th>பாகை-கலை-விகலை (Deg° Min' Sec")</th>
+                  <th>ராசி (Rasi)</th>
+                  <th>ராசி அதிபதி</th>
+                  <th>நட்சத்திரம் (Star)</th>
+                  <th>பாதம்</th>
+                  <th>நவாம்சம் (D9)</th>
+                  <th>நிலை (Status)</th>
+                </tr>
+              </thead>
+              <tbody id="planetsTableBody">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Aspects Table (பார்வைகள்) -->
+          <div class="table-card" style="margin-top: 20px;">
+            <h3 style="color: var(--text-gold-light); margin-bottom: 12px; font-size: 16px;">
+              <i class="fa-solid fa-eye"></i> கிரகங்களின் விசேஷ பார்வைகள் (Planetary Aspects / Drishti)
+            </h3>
+            <div id="aspectsContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Panchangam Details -->
+        <div class="tab-pane" id="tab-panchangam">
+          <div class="analysis-grid">
+            
+            <div class="analysis-card">
+              <div class="analysis-header">
+                <i class="fa-solid fa-sun"></i>
+                <h4>பிறந்த நேரப் பஞ்சாங்கம் (Birth Panchangam)</h4>
+              </div>
+              <div class="analysis-body" id="panchangamDetailsBody">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <div class="analysis-card">
+              <div class="analysis-header">
+                <i class="fa-solid fa-compass"></i>
+                <h4>வானியல் மற்றும் நேர விவரங்கள் (Astronomical Details)</h4>
+              </div>
+              <div class="analysis-body" id="astronomyDetailsBody">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tab 4: Vimshottari Dasa Bhukti -->
+        <div class="tab-pane" id="tab-dasa">
+          
+          <!-- Balance of Dasa -->
+          <div class="dasa-balance-box" id="dasaBalanceContainer">
+            <!-- Populated by JS -->
+          </div>
+
+          <!-- Current Running Dasa -->
+          <div class="dasa-current-card" id="currentDasaContainer">
+            <!-- Populated by JS -->
+          </div>
+
+          <!-- Lifetime Dasa List -->
+          <div class="chart-card" style="text-align: left;">
+            <div class="chart-card-header">
+              <h3><i class="fa-solid fa-clock-rotate-left"></i> வாழ்நாள் விம்சோத்தரி தசா-புத்திகள் (Lifetime Dasa-Bhukti Periods)</h3>
+              <span class="chart-badge">120 வருட சுழற்சி</span>
+            </div>
+            <div class="dasa-timeline-list" id="lifetimeDasaList">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tab 5: Predictions & Yogas -->
+        <div class="tab-pane" id="tab-predictions">
+          <div class="analysis-grid">
+            
+            <!-- Ascendant Characteristics -->
+            <div class="analysis-card">
+              <div class="analysis-header">
+                <i class="fa-solid fa-user-astronaut"></i>
+                <h4 id="predLagnaTitle">லக்னப் பொதுப் பலன்கள் (Ascendant Nature)</h4>
+              </div>
+              <div class="analysis-body" id="predLagnaBody">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <!-- Moon Sign Characteristics -->
+            <div class="analysis-card">
+              <div class="analysis-header">
+                <i class="fa-solid fa-moon"></i>
+                <h4 id="predRasiTitle">ராசி மற்றும் நட்சத்திரப் பலன்கள் (Moon & Star Nature)</h4>
+              </div>
+              <div class="analysis-body" id="predRasiBody">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <!-- Yogas (Rajayoga, Gajakesari, etc.) -->
+            <div class="analysis-card full-width">
+              <div class="analysis-header">
+                <i class="fa-solid fa-crown"></i>
+                <h4>ஜாதகத்தில் அமைந்த முக்கிய சுப யோகங்கள் (Auspicious Yogas)</h4>
+              </div>
+              <div class="analysis-body" id="predYogasBody">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <!-- Doshas Analysis (Mars / Rahu-Ketu) -->
+            <div class="analysis-card full-width">
+              <div class="analysis-header">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h4>தோஷ ஆய்வுகள் (Dosha Analysis - செவ்வாய் & சர்ப்ப தோஷம்)</h4>
+              </div>
+              <div class="analysis-body" id="predDoshasBody">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <!-- Career & Education Guidance -->
+            <div class="analysis-card">
+              <div class="analysis-header">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <h4>கல்வி மற்றும் தொழில் வழிகாட்டல் (Career & Education)</h4>
+              </div>
+              <div class="analysis-body" id="predCareerBody">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <!-- Marriage & Family Life -->
+            <div class="analysis-card">
+              <div class="analysis-header">
+                <i class="fa-solid fa-heart"></i>
+                <h4>திருமணம் மற்றும் குடும்ப வாழ்க்கை (Marriage & Family)</h4>
+              </div>
+              <div class="analysis-body" id="predMarriageBody">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <!-- Health Guidance -->
+            <div class="analysis-card full-width">
+              <div class="analysis-header">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <h4>உடல்நலம் மற்றும் வாழ்க்கை முறை (Health & Lifestyle)</h4>
+              </div>
+              <div class="analysis-body" id="predHealthBody">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tab 6: Remedies & Lucky Factors -->
+        <div class="tab-pane" id="tab-remedies">
+          <div class="analysis-card full-width">
+            <div class="analysis-header">
+              <i class="fa-solid fa-sparkles"></i>
+              <h4>அதிர்ஷ்ட காரணிகள் (Lucky Astrological Factors)</h4>
+            </div>
+            <div class="lucky-grid" id="luckyFactorsGrid">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <div class="analysis-card full-width" style="margin-top: 18px;">
+            <div class="analysis-header">
+              <i class="fa-solid fa-hands-praying"></i>
+              <h4>வழிபட வேண்டிய தெய்வங்கள் மற்றும் எளிய பரிகாரங்கள் (Remedies & Worship)</h4>
+            </div>
+            <div class="analysis-body" id="remediesBody">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>🕉️ வேத ஜோதிட கணிப்பு முறை • ஸ்ரீ லஹிரி நிருயன திருக்கணித முறைப்படி துல்லியமாக கணக்கிடப்பட்டது.</p>
+      <p style="margin-top: 4px; font-size: 11px;">
+        குறிப்பு: ஜோதிட பலன்கள் ஒரு வழிகாட்டுதலே; நற்சிந்தனையும் சுய முயற்சியுமே மனித வாழ்வின் உயர்வை நிர்ணயிக்கின்றன.
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- Bhava Details Modal -->
+  <div class="modal-backdrop" id="bhavaModal">
+    <div class="modal-content">
+      <button type="button" class="modal-close" id="closeModalBtn">&times;</button>
+      <div id="modalBody">
+        <!-- Injected on click -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Engine Script -->
+  <script src="app.js"></script>
 </body>
 </html>
