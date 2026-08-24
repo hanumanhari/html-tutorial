@@ -784,29 +784,100 @@
                             <input type="time" id="fTime" class="form-control" step="1" value="23:30:00" required>
                         </div>
                         <div class="form-group">
-                            <label>பிறந்த இடம் / நகரம் (Place):</label>
+                            <label>பிறந்த இடம் / நகரம் (Place Dropdown):</label>
                             <select id="fCitySelect" class="form-select" onchange="onCityChange()">
-                                <option value="11:36 வடக்கு,77:37 கிழக்கு,Anthiyur(அந்தியூர்)">அந்தியூர் (Anthiyur)</option>
-                                <option value="13:05 வடக்கு,80:16 கிழக்கு,Chennai(சென்னை)">சென்னை (Chennai)</option>
-                                <option value="09:55 வடக்கு,78:07 கிழக்கு,Madurai(மதுரை)">மதுரை (Madurai)</option>
-                                <option value="11:00 வடக்கு,76:57 கிழக்கு,Coimbatore(கோயம்புத்தூர்)">கோயம்புத்தூர் (Coimbatore)</option>
-                                <option value="10:47 வடக்கு,78:42 கிழக்கு,Trichy(திருச்சி)">திருச்சிராப்பள்ளி (Trichy)</option>
-                                <option value="11:39 வடக்கு,78:09 கிழக்கு,Salem(சேலம்)">சேலம் (Salem)</option>
-                                <option value="08:43 வடக்கு,77:45 கிழக்கு,Tirunelveli(திருநெல்வேலி)">திருநெல்வேலி (Tirunelveli)</option>
-                                <option value="10:47 வடக்கு,79:08 கிழக்கு,Thanjavur(தஞ்சாவூர்)">தஞ்சாவூர் (Thanjavur)</option>
-                                <option value="12:58 வடக்கு,77:35 கிழக்கு,Bengaluru(பெங்களூரு)">பெங்களூரு (Bengaluru)</option>
-                                <option value="01:21 வடக்கு,103:49 கிழக்கு,Singapore(சிங்கப்பூர்)">சிங்கப்பூர் (Singapore)</option>
-                                <option value="03:08 வடக்கு,101:41 கிழக்கு,Kuala Lumpur(மலேசியா)">மலேசியா (Kuala Lumpur)</option>
-                                <option value="custom">வேறு ஊர் (Custom)...</option>
+                                <optgroup label="📍 ஈரோடு மாவட்டம் (Erode District Places)">
+                                    <option value="11:36 வடக்கு,77:37 கிழக்கு,Anthiyur(அந்தியூர்)">அந்தியூர் (Anthiyur)</option>
+                                    <option value="11:37 வடக்கு,77:40 கிழக்கு,Poonachi(பூனாச்சி)">பூனாச்சி (Poonachi)</option>
+                                    <option value="11:38 வடக்கு,77:39 கிழக்கு,Kathiriyangadu(கத்திரியாங்காடு)">கத்திரியாங்காடு (Kathiriyangadu)</option>
+                                    <option value="11:27 வடக்கு,77:41 கிழக்கு,Bhavani(பவானி)">பவானி (Bhavani)</option>
+                                    <option value="11:20 வடக்கு,77:43 கிழக்கு,Erode(ஈரோடு)">ஈரோடு (Erode City)</option>
+                                    <option value="11:27 வடக்கு,77:26 கிழக்கு,Gobichettipalayam(கோபிசெட்டிபாளையம்)">கோபிசெட்டிபாளையம் (Gobichettipalayam)</option>
+                                    <option value="11:16 வடக்கு,77:35 கிழக்கு,Perundurai(பெருந்துறை)">பெருந்துறை (Perundurai)</option>
+                                    <option value="11:30 வடக்கு,77:14 கிழக்கு,Sathyamangalam(சத்தியமங்கலம்)">சத்தியமங்கலம் (Sathyamangalam)</option>
+                                    <option value="11:05 வடக்கு,77:53 கிழக்கு,Kodumudi(கொடுமுடி)">கொடுமுடி (Kodumudi)</option>
+                                    <option value="11:15 வடக்கு,77:46 கிழக்கு,Modakurichi(மொடக்குறிச்சி)">மொடக்குறிச்சி (Modakurichi)</option>
+                                    <option value="11:34 வடக்கு,77:44 கிழக்கு,Ammapettai(அம்மாபேட்டை)">அம்மாபேட்டை (Ammapettai)</option>
+                                    <option value="11:42 வடக்கு,77:43 கிழக்கு,Chennampatti(சென்னம்பட்டி)">சென்னம்பட்டி (Chennampatti)</option>
+                                    <option value="11:25 வடக்கு,77:18 கிழக்கு,Elathur(எலத்தூர்)">எலத்தூர் (Elathur)</option>
+                                    <option value="11:21 வடக்கு,77:19 கிழக்கு,Nambiyur(நம்பியூர்)">நம்பியூர் (Nambiyur)</option>
+                                    <option value="11:30 வடக்கு,77:24 கிழக்கு,T.N.Palayam(டி.என்.பாளையம்)">டி.என்.பாளையம் (T.N.Palayam)</option>
+                                    <option value="11:33 வடக்கு,77:34 கிழக்கு,Vellithiruppur(வெள்ளித்திருப்பூர்)">வெள்ளித்திருப்பூர் (Vellithiruppur)</option>
+                                    <option value="11:30 வடக்கு,77:36 கிழக்கு,Appakudal(ஆப்பகூடால்)">ஆப்பகூடால் (Appakudal)</option>
+                                    <option value="11:28 வடக்கு,77:08 கிழக்கு,Bhavanisagar(பவானிசாகர்)">பவானிசாகர் (Bhavanisagar)</option>
+                                    <option value="11:13 வடக்கு,77:21 கிழக்கு,Kunnathur(குன்னத்தூர்)">குன்னத்தூர் (Kunnathur)</option>
+                                    <option value="11:09 வடக்கு,77:41 கிழக்கு,Arachalur(அரச்சலூர்)">அரச்சலூர் (Arachalur)</option>
+                                    <option value="11:09 வடக்கு,77:48 கிழக்கு,Pasur(பாசூர்)">பாசூர் (Pasur)</option>
+                                    <option value="11:35 வடக்கு,77:38 கிழக்கு,Mailambadi(மைலம்பாடி)">மைலம்பாடி (Mailambadi)</option>
+                                    <option value="11:48 வடக்கு,77:01 கிழக்கு,Thalavadi(தாளவாடி)">தாளவாடி (Thalavadi)</option>
+                                    <option value="11:36 வடக்கு,77:24 கிழக்கு,Kadambur(கடம்பூர்)">கடம்பூர் (Kadambur)</option>
+                                    <option value="11:22 வடக்கு,77:37 கிழக்கு,Kanjikoil(காஞ்சிகோயில்)">காஞ்சிகோயில் (Kanjikoil)</option>
+                                    <option value="11:24 வடக்கு,77:40 கிழக்கு,Chithode(சித்தோடு)">சித்தோடு (Chithode)</option>
+                                    <option value="11:10 வடக்கு,77:36 கிழக்கு,Chennimalai(சென்னிமலை)">சென்னிமலை (Chennimalai)</option>
+                                    <option value="11:07 வடக்கு,77:47 கிழக்கு,Sivagiri(சிவகிரி)">சிவகிரி (Sivagiri - Erode)</option>
+                                    <option value="11:14 வடக்கு,77:42 கிழக்கு,Pondurai(பூந்துறை)">பூந்துறை (Pondurai)</option>
+                                    <option value="11:29 வடக்கு,77:31 கிழக்கு,Perundalaiyur(பெருந்தலையூர்)">பெருந்தலையூர் (Perundalaiyur)</option>
+                                    <option value="11:22 வடக்கு,77:43 கிழக்கு,B.P.Agraharam(பி.பி.அக்ரஹாரம்)">பி.பி.அக்ரஹாரம் (B.P.Agraharam)</option>
+                                    <option value="11:17 வடக்கு,77:45 கிழக்கு,Lakkapuram(லக்காபுரம்)">லக்காபுரம் (Lakkapuram)</option>
+                                    <option value="11:20 வடக்கு,77:42 கிழக்கு,Surampatti(சூரம்பட்டி)">சூரம்பட்டி (Surampatti)</option>
+                                </optgroup>
+                                <optgroup label="🏙️ தமிழ்நாடு மாவட்டங்கள் (TN District HQ & Major Cities)">
+                                    <option value="13:05 வடக்கு,80:16 கிழக்கு,Chennai(சென்னை)">சென்னை (Chennai)</option>
+                                    <option value="11:00 வடக்கு,76:57 கிழக்கு,Coimbatore(கோயம்புத்தூர்)">கோயம்புத்தூர் (Coimbatore)</option>
+                                    <option value="09:55 வடக்கு,78:07 கிழக்கு,Madurai(மதுரை)">மதுரை (Madurai)</option>
+                                    <option value="10:47 வடக்கு,78:42 கிழக்கு,Trichy(திருச்சி)">திருச்சிராப்பள்ளி (Trichy)</option>
+                                    <option value="11:39 வடக்கு,78:09 கிழக்கு,Salem(சேலம்)">சேலம் (Salem)</option>
+                                    <option value="08:43 வடக்கு,77:45 கிழக்கு,Tirunelveli(திருநெல்வேலி)">திருநெல்வேலி (Tirunelveli)</option>
+                                    <option value="11:06 வடக்கு,77:20 கிழக்கு,Tiruppur(திருப்பூர்)">திருப்பூர் (Tiruppur)</option>
+                                    <option value="12:55 வடக்கு,79:08 கிழக்கு,Vellore(வேலூர்)">வேலூர் (Vellore)</option>
+                                    <option value="10:47 வடக்கு,79:08 கிழக்கு,Thanjavur(தஞ்சாவூர்)">தஞ்சாவூர் (Thanjavur)</option>
+                                    <option value="10:21 வடக்கு,77:57 கிழக்கு,Dindigul(திண்டுக்கல்)">திண்டுக்கல் (Dindigul)</option>
+                                    <option value="08:11 வடக்கு,77:29 கிழக்கு,Kanyakumari(கன்னியாகுமரி)">கன்னியாகுமரி (Nagercoil)</option>
+                                    <option value="10:57 வடக்கு,78:04 கிழக்கு,Karur(கரூர்)">கரூர் (Karur)</option>
+                                    <option value="11:13 வடக்கு,78:09 கிழக்கு,Namakkal(நாமக்கல்)">நாமக்கல் (Namakkal)</option>
+                                    <option value="11:24 வடக்கு,76:42 கிழக்கு,Ooty(ஊட்டி/நீலகிரி)">நீலகிரி / ஊட்டி (Ooty)</option>
+                                    <option value="10:23 வடக்கு,78:49 கிழக்கு,Pudukkottai(புதுக்கோட்டை)">புதுக்கோட்டை (Pudukkottai)</option>
+                                    <option value="09:22 வடக்கு,78:50 கிழக்கு,Ramanathapuram(இராமநாதபுரம்)">இராமநாதபுரம் (Ramanathapuram)</option>
+                                    <option value="09:50 வடக்கு,78:29 கிழக்கு,Sivagangai(சிவகங்கை)">சிவகங்கை (Sivagangai)</option>
+                                    <option value="10:00 வடக்கு,77:28 கிழக்கு,Theni(தேனி)">தேனி (Theni)</option>
+                                    <option value="08:48 வடக்கு,78:09 கிழக்கு,Thoothukudi(தூத்துக்குடி)">தூத்துக்குடி (Thoothukudi)</option>
+                                    <option value="13:08 வடக்கு,79:54 கிழக்கு,Tiruvallur(திருவள்ளூர்)">திருவள்ளூர் (Tiruvallur)</option>
+                                    <option value="12:13 வடக்கு,79:04 கிழக்கு,Tiruvannamalai(திருவண்ணாமலை)">திருவண்ணாமலை (Tiruvannamalai)</option>
+                                    <option value="10:46 வடக்கு,79:38 கிழக்கு,Tiruvarur(திருவாரூர்)">திருவாரூர் (Tiruvarur)</option>
+                                    <option value="12:31 வடக்கு,78:13 கிழக்கு,Krishnagiri(கிருஷ்ணகிரி)">கிருஷ்ணகிரி (Krishnagiri)</option>
+                                    <option value="12:08 வடக்கு,78:10 கிழக்கு,Dharmapuri(தர்மபுரி)">தர்மபுரி (Dharmapuri)</option>
+                                    <option value="11:08 வடக்கு,79:04 கிழக்கு,Ariyalur(அரியலூர்)">அரியலூர் (Ariyalur)</option>
+                                    <option value="11:45 வடக்கு,79:45 கிழக்கு,Cuddalore(கடலூர்)">கடலூர் (Cuddalore)</option>
+                                    <option value="11:44 வடக்கு,78:57 கிழக்கு,Kallakurichi(கள்ளக்குறிச்சி)">கள்ளக்குறிச்சி (Kallakurichi)</option>
+                                    <option value="12:50 வடக்கு,79:42 கிழக்கு,Kanchipuram(காஞ்சிபுரம்)">காஞ்சிபுரம் (Kanchipuram)</option>
+                                    <option value="12:41 வடக்கு,79:58 கிழக்கு,Chengalpattu(செங்கல்பட்டு)">செங்கல்பட்டு (Chengalpattu)</option>
+                                    <option value="11:06 வடக்கு,79:39 கிழக்கு,Mayiladuthurai(மயிலாடுதுறை)">மயிலாடுதுறை (Mayiladuthurai)</option>
+                                    <option value="10:46 வடக்கு,79:50 கிழக்கு,Nagapattinam(நாகப்பட்டினம்)">நாகப்பட்டினம் (Nagapattinam)</option>
+                                    <option value="11:14 வடக்கு,78:52 கிழக்கு,Perambalur(பெரம்பலூர்)">பெரம்பலூர் (Perambalur)</option>
+                                    <option value="12:55 வடக்கு,79:20 கிழக்கு,Ranipet(இராணிப்பேட்டை)">இராணிப்பேட்டை (Ranipet)</option>
+                                    <option value="08:57 வடக்கு,77:18 கிழக்கு,Tenkasi(தென்காசி)">தென்காசி (Tenkasi)</option>
+                                    <option value="12:29 வடக்கு,78:34 கிழக்கு,Tirupattur(திருப்பத்தூர்)">திருப்பத்தூர் (Tirupattur)</option>
+                                    <option value="11:56 வடக்கு,79:29 கிழக்கு,Villupuram(விழுப்புரம்)">விழுப்புரம் (Villupuram)</option>
+                                    <option value="09:35 வடக்கு,77:57 கிழக்கு,Virudhunagar(விருதுநகர்)">விருதுநகர் (Virudhunagar)</option>
+                                </optgroup>
+                                <optgroup label="🌐 பிற இடங்கள் (Other Cities)">
+                                    <option value="12:58 வடக்கு,77:35 கிழக்கு,Bengaluru(பெங்களூரு)">பெங்களூரு (Bengaluru)</option>
+                                    <option value="01:21 வடக்கு,103:49 கிழக்கு,Singapore(சிங்கப்பூர்)">சிங்கப்பூர் (Singapore)</option>
+                                    <option value="03:08 வடக்கு,101:41 கிழக்கு,Kuala Lumpur(மலேசியா)">மலேசியா (Kuala Lumpur)</option>
+                                    <option value="custom">வேறு ஊர் (Custom)...</option>
+                                </optgroup>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>ஊர் பெயர் & அட்ச/தீர்க்கரேகை:</label>
+                            <label>ஊர் பெயர் & அட்ச/தீர்க்கரேகை (Auto-Detect):</label>
                             <div style="display:flex; gap:6px;">
-                                <input type="text" id="fPlace" class="form-control" value="Anthiyur(அந்தியூர்)" placeholder="ஊர் பெயர்">
+                                <input type="text" id="fPlace" list="placesDatalist" class="form-control" value="Anthiyur(அந்தியூர்)" placeholder="ஊர் டைப் செய்யவும்..." oninput="autoDetectCoordinates()">
                                 <input type="text" id="fLatDMS" class="form-control" value="11:36 வடக்கு" placeholder="11:36 வடக்கு" style="width:45%;">
                                 <input type="text" id="fLongDMS" class="form-control" value="77:37 கிழக்கு" placeholder="77:37 கிழக்கு" style="width:45%;">
                             </div>
+                            <datalist id="placesDatalist">
+                                <!-- Populated dynamically by JS -->
+                            </datalist>
                         </div>
                     </div>
 
@@ -1792,6 +1863,112 @@
             calculateAndRenderHoroscope();
         }
 
+        // Comprehensive Places Database with Tamil & English keys
+        const PLACES_DATABASE = [
+            // Erode District Places
+            { name: "Anthiyur(அந்தியூர்)", keys: ["anthiyur", "அந்தியூர்"], lat: "11:36 வடக்கு", long: "77:37 கிழக்கு" },
+            { name: "Poonachi(பூனாச்சி)", keys: ["poonachi", "பூனாச்சி"], lat: "11:37 வடக்கு", long: "77:40 கிழக்கு" },
+            { name: "Kathiriyangadu(கத்திரியாங்காடு)", keys: ["kathiriyangadu", "கத்திரியாங்காடு"], lat: "11:38 வடக்கு", long: "77:39 கிழக்கு" },
+            { name: "Bhavani(பவானி)", keys: ["bhavani", "பவானி"], lat: "11:27 வடக்கு", long: "77:41 கிழக்கு" },
+            { name: "Erode(ஈரோடு)", keys: ["erode", "ஈரோடு"], lat: "11:20 வடக்கு", long: "77:43 கிழக்கு" },
+            { name: "Gobichettipalayam(கோபிசெட்டிபாளையம்)", keys: ["gobichettipalayam", "gobi", "கோபிசெட்டிபாளையம்", "கோபி"], lat: "11:27 வடக்கு", long: "77:26 கிழக்கு" },
+            { name: "Perundurai(பெருந்துறை)", keys: ["perundurai", "பெருந்துறை"], lat: "11:16 வடக்கு", long: "77:35 கிழக்கு" },
+            { name: "Sathyamangalam(சத்தியமங்கலம்)", keys: ["sathyamangalam", "sathy", "சத்தியமங்கலம்", "சத்தி"], lat: "11:30 வடக்கு", long: "77:14 கிழக்கு" },
+            { name: "Kodumudi(கொடுமுடி)", keys: ["kodumudi", "கொடுமுடி"], lat: "11:05 வடக்கு", long: "77:53 கிழக்கு" },
+            { name: "Modakurichi(மொடக்குறிச்சி)", keys: ["modakurichi", "மொடக்குறிச்சி"], lat: "11:15 வடக்கு", long: "77:46 கிழக்கு" },
+            { name: "Ammapettai(அம்மாபேட்டை)", keys: ["ammapettai", "அம்மாபேட்டை"], lat: "11:34 வடக்கு", long: "77:44 கிழக்கு" },
+            { name: "Chennampatti(சென்னம்பட்டி)", keys: ["chennampatti", "சென்னம்பட்டி"], lat: "11:42 வடக்கு", long: "77:43 கிழக்கு" },
+            { name: "Elathur(எலத்தூர்)", keys: ["elathur", "எலத்தூர்"], lat: "11:25 வடக்கு", long: "77:18 கிழக்கு" },
+            { name: "Nambiyur(நம்பியூர்)", keys: ["nambiyur", "நம்பியூர்"], lat: "11:21 வடக்கு", long: "77:19 கிழக்கு" },
+            { name: "T.N.Palayam(டி.என்.பாளையம்)", keys: ["tnpalayam", "t.n.palayam", "டி.என்.பாளையம்"], lat: "11:30 வடக்கு", long: "77:24 கிழக்கு" },
+            { name: "Vellithiruppur(வெள்ளித்திருப்பூர்)", keys: ["vellithiruppur", "வெள்ளித்திருப்பூர்"], lat: "11:33 வடக்கு", long: "77:34 கிழக்கு" },
+            { name: "Appakudal(ஆப்பகூடால்)", keys: ["appakudal", "ஆப்பகூடால்"], lat: "11:30 வடக்கு", long: "77:36 கிழக்கு" },
+            { name: "Bhavanisagar(பவானிசாகர்)", keys: ["bhavanisagar", "பவானிசாகர்"], lat: "11:28 வடக்கு", long: "77:08 கிழக்கு" },
+            { name: "Kunnathur(குன்னத்தூர்)", keys: ["kunnathur", "குன்னத்தூர்"], lat: "11:13 வடக்கு", long: "77:21 கிழக்கு" },
+            { name: "Arachalur(அரச்சலூர்)", keys: ["arachalur", "அரச்சலூர்"], lat: "11:09 வடக்கு", long: "77:41 கிழக்கு" },
+            { name: "Pasur(பாசூர்)", keys: ["pasur", "பாசூர்"], lat: "11:09 வடக்கு", long: "77:48 கிழக்கு" },
+            { name: "Mailambadi(மைலம்பாடி)", keys: ["mailambadi", "மைலம்பாடி"], lat: "11:35 வடக்கு", long: "77:38 கிழக்கு" },
+            { name: "Thalavadi(தாளவாடி)", keys: ["thalavadi", "தாளவாடி"], lat: "11:48 வடக்கு", long: "77:01 கிழக்கு" },
+            { name: "Kadambur(கடம்பூர்)", keys: ["kadambur", "கடம்பூர்"], lat: "11:36 வடக்கு", long: "77:24 கிழக்கு" },
+            { name: "Kanjikoil(காஞ்சிகோயில்)", keys: ["kanjikoil", "காஞ்சிகோயில்"], lat: "11:22 வடக்கு", long: "77:37 கிழக்கு" },
+            { name: "Chithode(சித்தோடு)", keys: ["chithode", "சித்தோடு"], lat: "11:24 வடக்கு", long: "77:40 கிழக்கு" },
+            { name: "Chennimalai(சென்னிமலை)", keys: ["chennimalai", "சென்னிமலை"], lat: "11:10 வடக்கு", long: "77:36 கிழக்கு" },
+            { name: "Sivagiri(சிவகிரி)", keys: ["sivagiri", "சிவகிரி"], lat: "11:07 வடக்கு", long: "77:47 கிழக்கு" },
+            { name: "Pondurai(பூந்துறை)", keys: ["pondurai", "பூந்துறை"], lat: "11:14 வடக்கு", long: "77:42 கிழக்கு" },
+            { name: "Perundalaiyur(பெருந்தலையூர்)", keys: ["perundalaiyur", "பெருந்தலையூர்"], lat: "11:29 வடக்கு", long: "77:31 கிழக்கு" },
+            { name: "B.P.Agraharam(பி.பி.அக்ரஹாரம்)", keys: ["bpagraharam", "b.p.agraharam", "பி.பி.அக்ரஹாரம்"], lat: "11:22 வடக்கு", long: "77:43 கிழக்கு" },
+            { name: "Lakkapuram(லக்காபுரம்)", keys: ["lakkapuram", "லக்காபுரம்"], lat: "11:17 வடக்கு", long: "77:45 கிழக்கு" },
+            { name: "Surampatti(சூரம்பட்டி)", keys: ["surampatti", "சூரம்பட்டி"], lat: "11:20 வடக்கு", long: "77:42 கிழக்கு" },
+
+            // All TN Districts & Major Cities
+            { name: "Chennai(சென்னை)", keys: ["chennai", "சென்னை"], lat: "13:05 வடக்கு", long: "80:16 கிழக்கு" },
+            { name: "Coimbatore(கோயம்புத்தூர்)", keys: ["coimbatore", "kovai", "கோயம்புத்தூர்", "கோவை"], lat: "11:00 வடக்கு", long: "76:57 கிழக்கு" },
+            { name: "Madurai(மதுரை)", keys: ["madurai", "மதுரை"], lat: "09:55 வடக்கு", long: "78:07 கிழக்கு" },
+            { name: "Trichy(திருச்சி)", keys: ["trichy", "tiruchirappalli", "திருச்சி", "திருச்சிராப்பள்ளி"], lat: "10:47 வடக்கு", long: "78:42 கிழக்கு" },
+            { name: "Salem(சேலம்)", keys: ["salem", "சேலம்"], lat: "11:39 வடக்கு", long: "78:09 கிழக்கு" },
+            { name: "Tirunelveli(திருநெல்வேலி)", keys: ["tirunelveli", "nellai", "திருநெல்வேலி", "நெல்லை"], lat: "08:43 வடக்கு", long: "77:45 கிழக்கு" },
+            { name: "Tiruppur(திருப்பூர்)", keys: ["tiruppur", "திருப்பூர்"], lat: "11:06 வடக்கு", long: "77:20 கிழக்கு" },
+            { name: "Vellore(வேலூர்)", keys: ["vellore", "வேலூர்"], lat: "12:55 வடக்கு", long: "79:08 கிழக்கு" },
+            { name: "Thanjavur(தஞ்சாவூர்)", keys: ["thanjavur", "தஞ்சாவூர்"], lat: "10:47 வடக்கு", long: "79:08 கிழக்கு" },
+            { name: "Dindigul(திண்டுக்கல்)", keys: ["dindigul", "திண்டுக்கல்"], lat: "10:21 வடக்கு", long: "77:57 கிழக்கு" },
+            { name: "Kanyakumari(கன்னியாகுமரி)", keys: ["kanyakumari", "nagercoil", "கன்னியாகுமரி", "நாகர்கோவில்"], lat: "08:11 வடக்கு", long: "77:29 கிழக்கு" },
+            { name: "Karur(கரூர்)", keys: ["karur", "கரூர்"], lat: "10:57 வடக்கு", long: "78:04 கிழக்கு" },
+            { name: "Namakkal(நாமக்கல்)", keys: ["namakkal", "நாமக்கல்"], lat: "11:13 வடக்கு", long: "78:09 கிழக்கு" },
+            { name: "Ooty(ஊட்டி/நீலகிரி)", keys: ["ooty", "nilgiris", "உதகமண்டலம்", "ஊட்டி"], lat: "11:24 வடக்கு", long: "76:42 கிழக்கு" },
+            { name: "Pudukkottai(புதுக்கோட்டை)", keys: ["pudukkottai", "புதுக்கோட்டை"], lat: "10:23 வடக்கு", long: "78:49 கிழக்கு" },
+            { name: "Ramanathapuram(இராமநாதபுரம்)", keys: ["ramanathapuram", "ramnad", "இராமநாதபுரம்"], lat: "09:22 வடக்கு", long: "78:50 கிழக்கு" },
+            { name: "Sivagangai(சிவகங்கை)", keys: ["sivagangai", "சிவகங்கை"], lat: "09:50 வடக்கு", long: "78:29 கிழக்கு" },
+            { name: "Theni(தேனி)", keys: ["theni", "தேனி"], lat: "10:00 வடக்கு", long: "77:28 கிழக்கு" },
+            { name: "Thoothukudi(தூத்துக்குடி)", keys: ["thoothukudi", "tuticorin", "தூத்துக்குடி"], lat: "08:48 வடக்கு", long: "78:09 கிழக்கு" },
+            { name: "Tiruvallur(திருவள்ளூர்)", keys: ["tiruvallur", "திருவள்ளூர்"], lat: "13:08 வடக்கு", long: "79:54 கிழக்கு" },
+            { name: "Tiruvannamalai(திருவண்ணாமலை)", keys: ["tiruvannamalai", "திருவண்ணாமலை"], lat: "12:13 வடக்கு", long: "79:04 கிழக்கு" },
+            { name: "Tiruvarur(திருவாரூர்)", keys: ["tiruvarur", "திருவாரூர்"], lat: "10:46 வடக்கு", long: "79:38 கிழக்கு" },
+            { name: "Krishnagiri(கிருஷ்ணகிரி)", keys: ["krishnagiri", "கிருஷ்ணகிரி"], lat: "12:31 வடக்கு", long: "78:13 கிழக்கு" },
+            { name: "Dharmapuri(தர்மபுரி)", keys: ["dharmapuri", "தர்மபுரி"], lat: "12:08 வடக்கு", long: "78:10 கிழக்கு" },
+            { name: "Ariyalur(அரியலூர்)", keys: ["ariyalur", "அரியலூர்"], lat: "11:08 வடக்கு", long: "79:04 கிழக்கு" },
+            { name: "Cuddalore(கடலூர்)", keys: ["cuddalore", "கடலூர்"], lat: "11:45 வடக்கு", long: "79:45 கிழக்கு" },
+            { name: "Kallakurichi(கள்ளக்குறிச்சி)", keys: ["kallakurichi", "கள்ளக்குறிச்சி"], lat: "11:44 வடக்கு", long: "78:57 கிழக்கு" },
+            { name: "Kanchipuram(காஞ்சிபுரம்)", keys: ["kanchipuram", "காஞ்சிபுரம்"], lat: "12:50 வடக்கு", long: "79:42 கிழக்கு" },
+            { name: "Chengalpattu(செங்கல்பட்டு)", keys: ["chengalpattu", "செங்கல்பட்டு"], lat: "12:41 வடக்கு", long: "79:58 கிழக்கு" },
+            { name: "Mayiladuthurai(மயிலாடுதுறை)", keys: ["mayiladuthurai", "மயிலாடுதுறை"], lat: "11:06 வடக்கு", long: "79:39 கிழக்கு" },
+            { name: "Nagapattinam(நாகப்பட்டினம்)", keys: ["nagapattinam", "நாகப்பட்டினம்"], lat: "10:46 வடக்கு", long: "79:50 கிழக்கு" },
+            { name: "Perambalur(பெரம்பலூர்)", keys: ["perambalur", "பெரம்பலூர்"], lat: "11:14 வடக்கு", long: "78:52 கிழக்கு" },
+            { name: "Ranipet(இராணிப்பேட்டை)", keys: ["ranipet", "இராணிப்பேட்டை"], lat: "12:55 வடக்கு", long: "79:20 கிழக்கு" },
+            { name: "Tenkasi(தென்காசி)", keys: ["tenkasi", "தென்காசி"], lat: "08:57 வடக்கு", long: "77:18 கிழக்கு" },
+            { name: "Tirupattur(திருப்பத்தூர்)", keys: ["tirupattur", "திருப்பத்தூர்"], lat: "12:29 வடக்கு", long: "78:34 கிழக்கு" },
+            { name: "Villupuram(விழுப்புரம்)", keys: ["villupuram", "விழுப்புரம்"], lat: "11:56 வடக்கு", long: "79:29 கிழக்கு" },
+            { name: "Virudhunagar(விருதுநகர்)", keys: ["virudhunagar", "விருதுநகர்"], lat: "09:35 வடக்கு", long: "77:57 கிழக்கு" },
+            { name: "Bengaluru(பெங்களூரு)", keys: ["bengaluru", "bangalore", "பெங்களூரு"], lat: "12:58 வடக்கு", long: "77:35 கிழக்கு" },
+            { name: "Singapore(சிங்கப்பூர்)", keys: ["singapore", "சிங்கப்பூர்"], lat: "01:21 வடக்கு", long: "103:49 கிழக்கு" },
+            { name: "Kuala Lumpur(மலேசியா)", keys: ["malaysia", "kuala lumpur", "மலேசியா"], lat: "03:08 வடக்கு", long: "101:41 கிழக்கு" }
+        ];
+
+        function autoDetectCoordinates() {
+            const inputVal = document.getElementById('fPlace').value.trim().toLowerCase();
+            if (!inputVal) return;
+
+            const match = PLACES_DATABASE.find(p => 
+                p.keys.some(k => k.toLowerCase() === inputVal || inputVal.includes(k.toLowerCase()) || k.toLowerCase().includes(inputVal))
+            );
+
+            if (match) {
+                document.getElementById('fLatDMS').value = match.lat;
+                document.getElementById('fLongDMS').value = match.long;
+            }
+        }
+
+        function populateDatalist() {
+            const dl = document.getElementById('placesDatalist');
+            if (!dl) return;
+            dl.innerHTML = '';
+            PLACES_DATABASE.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.name;
+                opt.label = `${p.lat}, ${p.long}`;
+                dl.appendChild(opt);
+            });
+        }
+
         function onCityChange() {
             const val = document.getElementById('fCitySelect').value;
             if (val !== 'custom') {
@@ -2183,6 +2360,7 @@
 
         // Initialize App on DOM Load
         window.addEventListener('DOMContentLoaded', () => {
+            populateDatalist();
             loadSampleProfile('hariharan');
         });
     </script>
