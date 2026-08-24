@@ -837,8 +837,11 @@
         </div>
     </div>
 
-    <!-- TOP CONTROL PANEL WRAPPER -->
-    <div class="control-panel-wrapper no-print" id="panelWrapper">
+    <!-- MAIN APP CONTENT CONTAINER (HIDDEN UNTIL LOGGED IN) -->
+    <div id="appMainContent" style="display:none;">
+
+        <!-- TOP CONTROL PANEL WRAPPER -->
+        <div class="control-panel-wrapper no-print" id="panelWrapper">
         <div class="control-panel">
             
             <!-- HEADER TOOLBAR -->
@@ -1397,6 +1400,7 @@
 
         </div>
     </div>
+    </div> <!-- END appMainContent -->
 
     <!-- ASTROLOGY ENGINE & INTERACTIVE SCRIPT -->
     <script>
@@ -2530,8 +2534,7 @@
 
             if (u === 'hanumanharikaran' && p === '7708134143') {
                 sessionStorage.setItem('jathagam_logged_in', 'true');
-                document.getElementById('loginModal').style.display = 'none';
-                document.body.style.overflow = 'auto';
+                checkLoginStatus();
                 err.style.display = 'none';
             } else {
                 err.style.display = 'block';
@@ -2544,17 +2547,21 @@
             document.getElementById('loginUsername').value = '';
             document.getElementById('loginPassword').value = '';
             document.getElementById('loginError').style.display = 'none';
-            document.getElementById('loginModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+            checkLoginStatus();
         }
 
         function checkLoginStatus() {
             const isLoggedIn = sessionStorage.getItem('jathagam_logged_in') === 'true';
+            const modal = document.getElementById('loginModal');
+            const mainContent = document.getElementById('appMainContent');
+
             if (isLoggedIn) {
-                document.getElementById('loginModal').style.display = 'none';
+                if (modal) modal.style.display = 'none';
+                if (mainContent) mainContent.style.display = 'block';
                 document.body.style.overflow = 'auto';
             } else {
-                document.getElementById('loginModal').style.display = 'flex';
+                if (modal) modal.style.display = 'flex';
+                if (mainContent) mainContent.style.display = 'none';
                 document.body.style.overflow = 'hidden';
             }
         }
