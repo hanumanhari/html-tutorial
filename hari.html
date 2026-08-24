@@ -1,33 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
+<<!DOCTYPE html>
+<html lang="ta">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xerox Shop Banner</title>
+    <title>எலக்ட்ரானிக்ஸ் ஸ்டோக் & பில்லிங்</title>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .banner {
-            background-color: #009688;
-            color: white;
-            text-align: center;
-            padding: 50px 0;
-        }
-        .banner h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        .banner p {
-            font-size: 1.2em;
-        }
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f4f6f9; color: #333; }
+        h2 { color: #0056b3; }
+        .container { display: flex; gap: 20px; flex-wrap: wrap; }
+        .box { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex: 1; min-width: 300px; }
+        input, select { width: 100%; padding: 8px; margin: 8px 0; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #28a745; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
+        button:hover { background: #218838; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; font-size: 14px; }
+        th { background: #0056b3; color: white; }
     </style>
 </head>
 <body>
-    <div class="banner">
-        <h1>Welcome to Our Xerox Shop!</h1>
-        <p>High-Quality Printing and Copying Services</p>
+
+    <h2>எலக்ட்ரானிக்ஸ் பொருட்கள் பில்லிங் சாப்ட்வேர்</h2>
+
+    <div class="container">
+        <!-- புதிய பொருட்களை ஸ்டோக்கில் சேர்க்க -->
+        <div class="box">
+            <h3>1. புதிய பொருள் சேர்க்க (Add Stock)</h3>
+            <input type="text" id="pName" placeholder="பொருளின் பெயர் (எ.கா: CCTV, RAM)">
+            <input type="number" id="pPrice" placeholder="விலை (Price)">
+            <input type="number" id="pQty" placeholder="இருப்பு எண்ணிக்கை (Quantity)">
+            <button onclick="addProduct()">ஸ்டோக்கில் சேர்க்க</button>
+        </div>
+
+        <!-- பில் போட -->
+        <div class="box">
+            <h3>2. பில்லிங் கவுண்டர் (Billing Counter)</h3>
+            <select id="selectProduct"></select>
+            <input type="number" id="bQty" placeholder="தேவையான எண்ணிக்கை" value="1">
+            <button onclick="generateBill()">பில் போட (Generate Bill)</button>
+            <h4 id="billTotal" style="color: #d9534f; margin-top: 15px;"></h4>
+        </div>
     </div>
+
+    <!-- தற்போதைய ஸ்டோக் விவரங்கள் -->
+    <div class="box" style="margin-top: 20px;">
+        <h3>3. தற்போதைய இருப்பு நிலை (Inventory Status)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>பொருளின் பெயர்</th>
+                    <th>விலை (₹)</th>
+                    <th>மீதமுள்ள ஸ்டோக்</th>
+                </tr>
+            </thead>
+            <tbody id="stockTableBody"></tbody>
+        </table>
+    </div>
+
+    <script>
+        // பிரவுசரின் லோக்கல் ஸ்டோரேஜில் இருந்து டேட்டாவை எடுத்தல்
+        let products = JSON.parse(localStorage.getItem('electronics_stock')) || [];
+
+        function saveData() {
+            localStorage.setItem('electronics_stock', JSON.stringify(products));
+        }
+
+        function addProduct() {
+            let name = document.getElementById('pName').value.trim();
+            let price = parseFloat(document.getElementById('pPrice').value);
+            let qty = parseInt(document.getElementById('pQty').value);
+
+            if(!name || isNaN(price) || isNaN(qty)) {
+                alert("அனைத்து விவரங்களையும் சரியாக நிரப்பவும்!");
+                return;
+            }
+
+            products.push({ name: name, price: price, qty: qty });
+            saveData();
+            updateUI();
+            
+            document.getElementById('pName').value = '';
+            document.getElementById('pPrice').value = '';
+            document.getElementById('pQty').value = '';
+            alert("பொருள் வெற்றிகரமாக சேர்க்கப்பட்டது!");
+        }
+
+        function updateUI() {
+            let select = document.getElementById('selectProduct');
+            let tbody = document.getElementById('stockTableBody');
+            
+            select.innerHTML = '<option value="">பொருளைத் தேர்ந்தெடுக்கவும்</option>';
+            tbody.innerHTML = '';
+
+            products.forEach((p, index) => {
+                select.innerHTML += <option value="${index}">${p.name} - ₹${p.price} (Stock: ${p.qty})</option>;
+                tbody.innerHTML += <tr><td>${p.name}</td><td>${p.price}</td><td>${p.qty}</td></tr>;
+            });
+        }
+
+        function generateBill() {
+            let index = document.getElementById('selectProduct').value;
+            let bQty = parseInt(document.getElementById('bQty').value);
+
+            if(index === "" || isNaN(bQty) || bQty <= 0) {
+                _alertMsg = "பொருளையும் எண்ணிக்கையையும் சரியாகத் தேர்ந்தெடுக்கவும்!";
+                alert(_alertMsg);
+                return;
+            }
+
+            let product = products[index];
+
+            if(product.qty < bQty) {
+                alert("மன்னிக்கவும், போதுமான ஸ்டோக் இல்லை! தற்போதைய ஸ்டோக்: " + product.qty);
+                return;
+            }
+
+            // வாங்கிய பின் ஸ்டோக்கில் இருந்து எண்ணிக்கையை குறைத்தல்
+            product.qty -= bQty;
+            let totalAmount = product.price * bQty;
+
+            saveData();
+            updateUI();
+
+            document.getElementById('billTotal').innerText = மொத்தத் தொகை: ₹${totalAmount} (${product.name} - ${bQty} எண்ணிக்கை);
+        }
+
+        window.onload = updateUI;
+    </script>
+
 </body>
 </html>
