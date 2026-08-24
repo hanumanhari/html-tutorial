@@ -694,10 +694,148 @@
             .header-lock-badge-on-sheet {
                 display: none !important;
             }
+            #loginModal {
+                display: none !important;
+            }
+        }
+
+        /* Login Screen Overlay */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #4a000e 0%, #780016 50%, #1e1b4b 100%);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .login-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 380px;
+            padding: 30px 25px;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 2px #ffd700;
+            text-align: center;
+        }
+        .login-header {
+            margin-bottom: 24px;
+        }
+        .login-header h2 {
+            color: #780016;
+            font-size: 18px;
+            font-weight: 800;
+            margin-top: 10px;
+        }
+        .login-header p {
+            color: #64748b;
+            font-size: 12.5px;
+            margin-top: 4px;
+        }
+        .login-icon {
+            width: 56px;
+            height: 56px;
+            background: #fff7ed;
+            border: 2px solid #ffd700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 26px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .login-form-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+        .login-form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #374151;
+            margin-bottom: 5px;
+        }
+        .login-input {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 13.5px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .login-input:focus {
+            border-color: #780016;
+            box-shadow: 0 0 0 3px rgba(120, 0, 22, 0.15);
+        }
+        .login-btn {
+            width: 100%;
+            padding: 11px;
+            background: linear-gradient(135deg, #780016 0%, #990026 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 14.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(120, 0, 22, 0.3);
+            font-family: inherit;
+        }
+        .login-btn:hover {
+            background: linear-gradient(135deg, #990026 0%, #780016 100%);
+            transform: translateY(-1px);
+        }
+        .login-error {
+            margin-top: 14px;
+            padding: 10px;
+            background: #fee2e2;
+            border: 1px solid #fca5a5;
+            border-radius: 6px;
+            color: #991b1b;
+            font-size: 12px;
+            font-weight: 700;
+            display: none;
         }
     </style>
 </head>
 <body>
+
+    <!-- LOGIN MODAL OVERLAY -->
+    <div id="loginModal" class="login-overlay no-print">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-icon">🙏</div>
+                <h2>ஸ்ரீ ஹனுமான் இணைய உலகம்</h2>
+                <p>ஜாதகக் கணிப்பு மென்பொருள் உள்நுழைவு</p>
+            </div>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="login-form-group">
+                    <label for="loginUsername">பயனர்பெயர் (Username):</label>
+                    <input type="text" id="loginUsername" class="login-input" placeholder="பயனர்பெயரை உள்ளிடவும்" required autocomplete="username">
+                </div>
+                <div class="login-form-group">
+                    <label for="loginPassword">கடவுச்சொல் (Password):</label>
+                    <input type="password" id="loginPassword" class="login-input" placeholder="கடவுச்சொல்லை உள்ளிடவும்" required autocomplete="current-password">
+                </div>
+                <div id="loginError" class="login-error">
+                    ⚠️ தவறான பயனர்பெயர் அல்லது கடவுச்சொல்!
+                </div>
+                <button type="submit" class="login-btn">
+                    உள்நுழைக (Login)
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- TOP CONTROL PANEL WRAPPER -->
     <div class="control-panel-wrapper no-print" id="panelWrapper">
@@ -730,6 +868,9 @@
                     </button>
                     <button class="btn btn-print" onclick="window.print()" title="A4 வடிவில் அச்சிடுக அல்லது PDF சேமிக்க">
                         <i data-lucide="printer" style="width:14px; height:14px;"></i> A4 அச்சு / Save PDF
+                    </button>
+                    <button class="btn" style="background:#991b1b; color:#ffffff;" onclick="handleLogout()" title="வெளியேறு (Logout)">
+                        <i data-lucide="log-out" style="width:14px; height:14px;"></i> வெளியேறு (Logout)
                     </button>
                 </div>
             </div>
@@ -2380,8 +2521,47 @@
             lucide.createIcons();
         }
 
+        // Login & Authentication Handlers
+        function handleLogin(e) {
+            if (e) e.preventDefault();
+            const u = document.getElementById('loginUsername').value.trim();
+            const p = document.getElementById('loginPassword').value.trim();
+            const err = document.getElementById('loginError');
+
+            if (u === 'hanumanharikaran' && p === '7708134143') {
+                sessionStorage.setItem('jathagam_logged_in', 'true');
+                document.getElementById('loginModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+                err.style.display = 'none';
+            } else {
+                err.style.display = 'block';
+                err.innerText = '⚠️ தவறான பயனர்பெயர் அல்லது கடவுச்சொல்!';
+            }
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem('jathagam_logged_in');
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('loginError').style.display = 'none';
+            document.getElementById('loginModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function checkLoginStatus() {
+            const isLoggedIn = sessionStorage.getItem('jathagam_logged_in') === 'true';
+            if (isLoggedIn) {
+                document.getElementById('loginModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            } else {
+                document.getElementById('loginModal').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
         // Initialize App on DOM Load
         window.addEventListener('DOMContentLoaded', () => {
+            checkLoginStatus();
             populateDatalist();
             loadSampleProfile('hariharan');
         });
