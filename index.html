@@ -183,14 +183,105 @@
             margin-top: 2px;
         }
 
-        /* Two-Column Info Grid */
+        /* Two-Column Info Grid with Photo */
+        .info-section-wrapper {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
         .info-grid {
+            flex: 1;
             display: grid;
             grid-template-columns: 50% 50%;
-            gap: 16px;
-            margin-bottom: 10px;
+            gap: 12px;
             font-size: 12.5px;
-            line-height: 1.45;
+            line-height: 1.42;
+        }
+
+        .info-section-wrapper.no-photo .info-grid {
+            width: 100%;
+            grid-template-columns: 50% 50%;
+        }
+
+        .info-section-wrapper.no-photo .photo-box-container {
+            display: none !important;
+        }
+
+        .photo-box-container {
+            width: 96px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 2px;
+        }
+
+        .photo-frame {
+            width: 92px;
+            height: 116px;
+            border: 1.5px solid #000;
+            border-radius: 2px;
+            overflow: hidden;
+            background: #fdfdfd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+            transition: all 0.2s;
+        }
+
+        .photo-frame:hover {
+            border-color: #780016;
+            transform: scale(1.02);
+            box-shadow: 0 2px 8px rgba(120,0,22,0.25);
+        }
+
+        .photo-frame .photo-change-badge {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.65);
+            color: #fff;
+            font-size: 9px;
+            text-align: center;
+            padding: 2px 0;
+            display: none;
+            font-weight: 600;
+        }
+
+        .photo-frame:hover .photo-change-badge {
+            display: block;
+        }
+
+        .jathagar-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            color: #64748b;
+            font-size: 9.5px;
+            text-align: center;
+            padding: 4px;
+            width: 100%;
+            height: 100%;
+            background: #f8fafc;
+            border: 1px dashed #94a3b8;
+            user-select: none;
         }
 
         .info-col {
@@ -365,6 +456,8 @@
                 background: #fff !important;
                 padding: 0 !important;
                 margin: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             .no-print {
                 display: none !important;
@@ -379,6 +472,21 @@
             }
             .page-frame {
                 border: 1px solid #000 !important;
+            }
+            .photo-frame {
+                border: 1.5px solid #000 !important;
+                box-shadow: none !important;
+                transform: none !important;
+            }
+            .photo-change-badge {
+                display: none !important;
+            }
+            .info-section-wrapper.no-photo .photo-box-container {
+                display: none !important;
+            }
+            .info-section-wrapper.no-photo .info-grid {
+                width: 100% !important;
+                grid-template-columns: 50% 50% !important;
             }
         }
     </style>
@@ -476,6 +584,38 @@
                     </div>
                 </div>
 
+                <!-- PHOTO UPLOAD CONTROLS (NO PRINT) -->
+                <div class="form-row" style="background:#fff; padding:10px 14px; border-radius:6px; border:1px solid #e2e8f0; align-items:center; justify-content:space-between; margin-bottom:12px;">
+                    <div style="display:flex; flex-direction:column; gap:6px;">
+                        <label style="display:flex; align-items:center; gap:6px; font-size:12px; font-weight:700; color:#780016; margin-bottom:0;">
+                            <i data-lucide="image" style="width:16px; height:16px;"></i>
+                            ஜாதகர் புகைப்படம் (Photo Upload & Options):
+                        </label>
+                        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                            <input type="file" id="fPhotoInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
+                            <button type="button" class="btn" style="background:#780016; color:#fff; padding:6px 12px; font-size:12px;" onclick="document.getElementById('fPhotoInput').click()">
+                                <i data-lucide="upload" style="width:14px; height:14px;"></i> படம் பதிவேற்றுக (Choose Photo)
+                            </button>
+                            <button type="button" class="btn" style="background:#0284c7; color:#fff; padding:6px 12px; font-size:12px;" onclick="loadSamplePhoto('hari.jpg')">
+                                <i data-lucide="user-check" style="width:14px; height:14px;"></i> மாதிரி படம் (hari.jpg)
+                            </button>
+                            <button type="button" class="btn" id="btnTogglePhoto" style="background:#f1f5f9; color:#334155; padding:6px 12px; font-size:12px; border:1px solid #cbd5e1;" onclick="togglePhotoVisibility()">
+                                <i data-lucide="eye" style="width:14px; height:14px;"></i> <span id="togglePhotoText">படம் மறைக்க (Hide Photo)</span>
+                            </button>
+                            <button type="button" class="btn" style="background:#fee2e2; color:#991b1b; padding:6px 12px; font-size:12px; border:1px solid #fca5a5;" onclick="removePhoto()">
+                                <i data-lucide="trash-2" style="width:14px; height:14px;"></i> படம் நீக்கு (Clear)
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <div id="formPhotoThumb" style="width:40px; height:48px; border:1px solid #cbd5e1; border-radius:3px; overflow:hidden; background:#f8fafc; display:flex; align-items:center; justify-content:center; cursor:pointer;" onclick="document.getElementById('fPhotoInput').click()" title="படம் மாற்ற கிளிக் செய்யவும்">
+                            <img id="formPhotoImg" src="hari.jpg" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none';">
+                        </div>
+                        <span id="photoStatusText" style="font-size:11.5px; color:#16a34a; font-weight:700;">படம் இணைக்கப்பட்டுள்ளது</span>
+                    </div>
+                </div>
+
                 <button type="submit" class="btn btn-calc" style="width:100%; justify-content:center; padding:10px; margin-top:4px;">
                     <i data-lucide="refresh-cw" style="width:16px; height:16px;"></i> ஜாதகத்தை உடனே துல்லியமாகக் கணிக்கவும்
                 </button>
@@ -495,31 +635,45 @@
                 <div class="main-header-sub" id="outHeaderSub" contenteditable="true">Website Builder &nbsp;&nbsp; Mail id;hanumanhari.online@gmail.com</div>
             </div>
 
-            <!-- TWO COLUMN BIRTH & PANCHANGAM DETAILS -->
-            <div class="info-grid">
-                <!-- Left Column -->
-                <div class="info-col">
-                    <div class="info-row"><span class="info-label">ஜாதகர் பெயர்:</span><span class="info-val" id="outName" contenteditable="true">Hariharan.DEEE</span></div>
-                    <div class="info-row"><span class="info-label">பால்:</span><span class="info-val" id="outGender" contenteditable="true">ஆண்</span></div>
-                    <div class="info-row"><span class="info-label">தாய், தந்தை :</span><span class="info-val" id="outParents" contenteditable="true">மாரிமுத்து மல்லிகா</span></div>
-                    <div class="info-row"><span class="info-label">பிறந்த தேதி:</span><span class="info-val" id="outDateStr" contenteditable="true">25-09-1997, வியாழன்</span></div>
-                    <div class="info-row"><span class="info-label">பிறந்த நேரம்:</span><span class="info-val" id="outTimeStr" contenteditable="true">11.30.00 PM</span></div>
-                    <div class="info-row"><span class="info-label">பிறந்த இடம்:</span><span class="info-val" id="outPlace" contenteditable="true">Anthiyur(அந்தியூர்)</span></div>
-                    <div class="info-row"><span class="info-label">தீர்க்காம்சம்:</span><span class="info-val" id="outLongStr" contenteditable="true">77:37 கிழக்கு</span></div>
-                    <div class="info-row"><span class="info-label">அக்ஷாம்சம்:</span><span class="info-val" id="outLatStr" contenteditable="true">11:36 வடக்கு</span></div>
-                    <div class="info-row"><span class="info-label">அயனாம்சம்:</span><span class="info-val" id="outAyanamsaStr" contenteditable="true">சித்ர பக்ஷ (லஹிரி) - 23:49:31</span></div>
+            <!-- TWO COLUMN BIRTH & PANCHANGAM DETAILS WITH PHOTO -->
+            <div class="info-section-wrapper" id="infoSectionWrapper">
+                <div class="info-grid">
+                    <!-- Left Column -->
+                    <div class="info-col">
+                        <div class="info-row"><span class="info-label">ஜாதகர் பெயர்:</span><span class="info-val" id="outName" contenteditable="true">Hariharan.DEEE</span></div>
+                        <div class="info-row"><span class="info-label">பால்:</span><span class="info-val" id="outGender" contenteditable="true">ஆண்</span></div>
+                        <div class="info-row"><span class="info-label">தாய், தந்தை :</span><span class="info-val" id="outParents" contenteditable="true">மாரிமுத்து மல்லிகா</span></div>
+                        <div class="info-row"><span class="info-label">பிறந்த தேதி:</span><span class="info-val" id="outDateStr" contenteditable="true">25-09-1997, வியாழன்</span></div>
+                        <div class="info-row"><span class="info-label">பிறந்த நேரம்:</span><span class="info-val" id="outTimeStr" contenteditable="true">11.30.00 PM</span></div>
+                        <div class="info-row"><span class="info-label">பிறந்த இடம்:</span><span class="info-val" id="outPlace" contenteditable="true">Anthiyur(அந்தியூர்)</span></div>
+                        <div class="info-row"><span class="info-label">தீர்க்காம்சம்:</span><span class="info-val" id="outLongStr" contenteditable="true">77:37 கிழக்கு</span></div>
+                        <div class="info-row"><span class="info-label">அக்ஷாம்சம்:</span><span class="info-val" id="outLatStr" contenteditable="true">11:36 வடக்கு</span></div>
+                        <div class="info-row"><span class="info-label">அயனாம்சம்:</span><span class="info-val" id="outAyanamsaStr" contenteditable="true">சித்ர பக்ஷ (லஹிரி) - 23:49:31</span></div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="info-col">
+                        <div class="info-row"><span class="info-label">உதய லக்கினம்:</span><span class="info-val" id="outLagna" contenteditable="true">மிதுனம்</span></div>
+                        <div class="info-row"><span class="info-label">ராசி:</span><span class="info-val" id="outRasi" contenteditable="true">கடகம்</span></div>
+                        <div class="info-row"><span class="info-label">நட்சத்திரம்:</span><span class="info-val" id="outNakshatra" contenteditable="true">பூசம் - 1</span></div>
+                        <div class="info-row"><span class="info-label">திதி:</span><span class="info-val" id="outTithi" contenteditable="true">தசமி, கிருஷ்ண பக்ஷம் (தேய்பிறை)</span></div>
+                        <div class="info-row"><span class="info-label">கரணம்:</span><span class="info-val" id="outKarana" contenteditable="true">வணிசை</span></div>
+                        <div class="info-row"><span class="info-label">யோகம்:</span><span class="info-val" id="outYoga" contenteditable="true">பரிகம்</span></div>
+                        <div class="info-row"><span class="info-label">தமிழ் தேதி:</span><span class="info-val" id="outTamilDate" contenteditable="true">கலி 5099 - ஈஸ்வர வருடம், புரட்டாசி 9 -ம் தேதி</span></div>
+                        <div class="info-row"><span class="info-label" style="width:100%; font-size:11.5px; margin-top:2px;" id="outContact" contenteditable="true">mobile; 7708134143 insta id; harikaran ? online</span></div>
+                    </div>
                 </div>
 
-                <!-- Right Column -->
-                <div class="info-col">
-                    <div class="info-row"><span class="info-label">உதய லக்கினம்:</span><span class="info-val" id="outLagna" contenteditable="true">மிதுனம்</span></div>
-                    <div class="info-row"><span class="info-label">ராசி:</span><span class="info-val" id="outRasi" contenteditable="true">கடகம்</span></div>
-                    <div class="info-row"><span class="info-label">நட்சத்திரம்:</span><span class="info-val" id="outNakshatra" contenteditable="true">பூசம் - 1</span></div>
-                    <div class="info-row"><span class="info-label">திதி:</span><span class="info-val" id="outTithi" contenteditable="true">தசமி, கிருஷ்ண பக்ஷம் (தேய்பிறை)</span></div>
-                    <div class="info-row"><span class="info-label">கரணம்:</span><span class="info-val" id="outKarana" contenteditable="true">வணிசை</span></div>
-                    <div class="info-row"><span class="info-label">யோகம்:</span><span class="info-val" id="outYoga" contenteditable="true">பரிகம்</span></div>
-                    <div class="info-row"><span class="info-label">தமிழ் தேதி:</span><span class="info-val" id="outTamilDate" contenteditable="true">கலி 5099 - ஈஸ்வர வருடம், புரட்டாசி 9 -ம் தேதி</span></div>
-                    <div class="info-row"><span class="info-label" style="width:100%; font-size:11.5px; margin-top:2px;" id="outContact" contenteditable="true">mobile; 7708134143 insta id; harikaran ? online</span></div>
+                <!-- Right Side Photo Box -->
+                <div class="photo-box-container" id="photoBoxContainer">
+                    <div class="photo-frame" id="photoFrame" onclick="document.getElementById('fPhotoInput').click()" title="புகைப்படத்தை மாற்ற கிளிக் செய்யவும்">
+                        <img id="outPhoto" src="hari.jpg" alt="ஜாதகர் படம்" class="jathagar-photo" onerror="onPhotoLoadError()">
+                        <div id="photoPlaceholder" class="photo-placeholder" style="display:none;">
+                            <i data-lucide="camera" style="width:22px; height:22px; color:#64748b;"></i>
+                            <span>படம் சேர்க்க</span>
+                        </div>
+                        <div class="photo-change-badge no-print">மாற்றுக</div>
+                    </div>
                 </div>
             </div>
 
