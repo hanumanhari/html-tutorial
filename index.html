@@ -882,9 +882,13 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group" style="grid-column: span 2;">
+                        <div class="form-group">
                             <label>ஜாதகர் முகவரி (Jathagar Address - Bottom Footer):</label>
                             <input type="text" id="fJadhagarAddress" class="form-control" value="Anthiyur(அந்தியூர்), ஈரோடு மாவட்டம்" placeholder="ஜாதகர் முகவரி" oninput="updateFooterDisplay()">
+                        </div>
+                        <div class="form-group">
+                            <label>ஜாதகர் மொபைல் எண் (Jathagar Mobile No):</label>
+                            <input type="text" id="fJadhagarMobile" class="form-control" value="98765 43210" placeholder="98765 43210" oninput="updateHeaderDisplay()">
                         </div>
                     </div>
 
@@ -920,8 +924,8 @@
                         <input type="text" id="fHeaderSub" class="form-control" value="Website Builder    Mail id;myuyurhanuman@gmail.com" oninput="updateHeaderDisplay()">
                     </div>
                     <div class="form-group">
-                        <label>மொபைல் எண் (mobile no ;):</label>
-                        <input type="text" id="fContact" class="form-control" value="1234567890" placeholder="1234567890" oninput="updateHeaderDisplay()">
+                        <label>கடை மொபைல் எண் (Shop Mobile No):</label>
+                        <input type="text" id="fShopMobile" class="form-control" value="94430 12345" placeholder="94430 12345" oninput="updateHeaderDisplay()">
                     </div>
                 </div>
 
@@ -1045,14 +1049,10 @@
                         <i data-lucide="edit-3" style="width:16px; height:16px;"></i> ராசி & நவாம்சம் கட்டங்கள் எடிட்டர் (Kundli Chart Box Editor)
                     </strong>
                     <p style="font-size:12px; color:#0c4a6e; margin-top:3px;">
-                        A4 பக்கத்தில் உள்ள ராசி மற்றும் நவாம்ச கட்டங்களில் <strong>நேரடியாக கிளிக் செய்து டைப் செய்யலாம்</strong>, அல்லது கீழே உள்ள டூல்ஸ் மூலம் கிரகங்களைச் சேர்க்கலாம்/நீக்கலாம்.
+                        1. எடிட் செய்ய வேண்டிய கட்டத்தைத் தேர்ந்தெடுக்கவும்:
                     </p>
-                </div>
-
-                <div class="form-row" style="align-items:flex-end;">
                     <div class="form-group">
-                        <label>1. கட்டத்தைத் தேர்ந்தெடுக்கவும் (Target Chart):</label>
-                        <select id="selEditTargetChart" class="form-select">
+                        <select id="selEditChartType" class="form-select">
                             <option value="gridRasi">ராசி கட்டம் (Rasi Chart)</option>
                             <option value="gridNavamsa">நவாம்சம் கட்டம் (Navamsa Chart)</option>
                         </select>
@@ -1147,7 +1147,13 @@
                 <div class="jathagam-header">
                     <div class="main-header-title" id="outHeaderTitle" contenteditable="true" style="color:#15803d;">HANUMAN INTERNET WORLD (Sri Rama Jeyam)</div>
                     <div class="shop-place-box" id="outShopPlace" contenteditable="true">கடை இடம்: கத்திரியாங்காடு, பூனாச்சி</div>
-                    <div class="main-header-sub" id="outHeaderSub" contenteditable="true" style="color:#dc2626; font-size:11.5px; font-weight:700; margin-top:2px;">Website Builder &nbsp;&nbsp; Mail id;myuyurhanuman@gmail.com</div>
+                    <div style="display:flex; justify-content:center; align-items:center; gap:10px; flex-wrap:wrap; margin-top:2px;">
+                        <div class="main-header-sub" id="outHeaderSub" contenteditable="true" style="color:#dc2626; font-size:11.5px; font-weight:700;">Website Builder &nbsp;&nbsp; Mail id;myuyurhanuman@gmail.com</div>
+                        <div class="shop-mobile-header-tag" style="font-size:11.5px; font-weight:700; color:#713f12; background:#fef08a; padding:1px 6px; border-radius:4px; border:1px solid #eab308; display:inline-flex; align-items:center; gap:3px;">
+                            <span>mobile no :</span>
+                            <span id="outShopMobile" contenteditable="true" style="font-weight:700; color:#000;">94430 12345</span>
+                        </div>
+                    </div>
                     
                     <!-- Screen Lock Badge -->
                     <div class="header-lock-badge-on-sheet no-print" id="sheetHeaderBadge" style="display:none;">
@@ -1186,7 +1192,7 @@
                     <div class="info-row"><span class="info-label">கரணம்:</span><span class="info-val" id="outKarana" contenteditable="true">வணிசை</span></div>
                     <div class="info-row"><span class="info-label">யோகம்:</span><span class="info-val" id="outYoga" contenteditable="true">பரிகம்</span></div>
                     <div class="info-row"><span class="info-label">தமிழ் தேதி:</span><span class="info-val" id="outTamilDate" contenteditable="true">கலி 5099 - ஈஸ்வர வருடம், புரட்டாசி 9 -ம் தேதி</span></div>
-                    <div class="info-row"><span class="info-label">mobile no ;</span><span class="info-val" id="outContact" contenteditable="true">1234567890</span></div>
+                    <div class="info-row"><span class="info-label">ஜாதகர் மொபைல்:</span><span class="info-val" id="outJadhagarMobile" contenteditable="true">98765 43210</span></div>
                 </div>
             </div>
 
@@ -1417,11 +1423,12 @@
             const titleInput = document.getElementById('fHeaderTitle');
             const subInput = document.getElementById('fHeaderSub');
             const shopPlaceInput = document.getElementById('fShopPlace');
-            const contactInput = document.getElementById('fContact');
+            const shopMobileInput = document.getElementById('fShopMobile');
 
             const titleSheet = document.getElementById('outHeaderTitle');
             const subSheet = document.getElementById('outHeaderSub');
             const shopPlaceSheet = document.getElementById('outShopPlace');
+            const shopMobileSheet = document.getElementById('outShopMobile');
 
             if (isHeaderLocked) {
                 btn.classList.add('active');
@@ -1431,11 +1438,12 @@
                 titleInput.disabled = true;
                 subInput.disabled = true;
                 if (shopPlaceInput) shopPlaceInput.disabled = true;
-                contactInput.disabled = true;
+                if (shopMobileInput) shopMobileInput.disabled = true;
 
                 titleSheet.setAttribute('contenteditable', 'false');
                 subSheet.setAttribute('contenteditable', 'false');
                 if (shopPlaceSheet) shopPlaceSheet.setAttribute('contenteditable', 'false');
+                if (shopMobileSheet) shopMobileSheet.setAttribute('contenteditable', 'false');
             } else {
                 btn.classList.remove('active');
                 lbl.innerText = "Header Freeze: OFF (திறந்துள்ளது)";
@@ -1444,12 +1452,13 @@
                 titleInput.disabled = false;
                 subInput.disabled = false;
                 if (shopPlaceInput) shopPlaceInput.disabled = false;
-                contactInput.disabled = false;
+                if (shopMobileInput) shopMobileInput.disabled = false;
 
                 if (!isSheetLocked) {
                     titleSheet.setAttribute('contenteditable', 'true');
                     subSheet.setAttribute('contenteditable', 'true');
                     if (shopPlaceSheet) shopPlaceSheet.setAttribute('contenteditable', 'true');
+                    if (shopMobileSheet) shopMobileSheet.setAttribute('contenteditable', 'true');
                 }
             }
             lucide.createIcons();
@@ -1469,7 +1478,14 @@
             const btmShop = document.getElementById('outFooterShopPlace');
             if (btmShop) btmShop.innerText = shopText;
 
-            document.getElementById('outContact').innerText = document.getElementById('fContact').value;
+            const shopMobVal = document.getElementById('fShopMobile')?.value || '';
+            const jadhagarMobVal = document.getElementById('fJadhagarMobile')?.value || '';
+
+            const outShopMob = document.getElementById('outShopMobile');
+            if (outShopMob) outShopMob.innerText = shopMobVal;
+
+            const outJadhMob = document.getElementById('outJadhagarMobile');
+            if (outJadhMob) outJadhMob.innerText = jadhagarMobVal;
         }
 
         function updateHeaderColors() {
@@ -1991,7 +2007,8 @@
                 document.getElementById('fHeaderTitle').value = "HANUMAN INTERNET WORLD (Sri Rama Jeyam)";
                 document.getElementById('fShopPlace').value = "கத்திரியாங்காடு, பூனாச்சி";
                 document.getElementById('fHeaderSub').value = "Website Builder    Mail id;myuyurhanuman@gmail.com";
-                document.getElementById('fContact').value = "1234567890";
+                document.getElementById('fShopMobile').value = "94430 12345";
+                document.getElementById('fJadhagarMobile').value = "98765 43210";
             } else if (type === 'current') {
                 const now = new Date();
                 const pad = (n) => n.toString().padStart(2, '0');
@@ -2021,7 +2038,8 @@
             const latDMS = document.getElementById('fLatDMS').value;
             const headerTitle = document.getElementById('fHeaderTitle').value;
             const headerSub = document.getElementById('fHeaderSub').value;
-            const contactStr = document.getElementById('fContact').value;
+            const shopMobileStr = document.getElementById('fShopMobile')?.value || '';
+            const jadhagarMobileStr = document.getElementById('fJadhagarMobile')?.value || '';
 
             // Parse Date & Time
             const [year, month, day] = dateStr.split('-').map(Number);
@@ -2179,8 +2197,12 @@
             if (!isHeaderLocked) {
                 document.getElementById('outHeaderTitle').innerText = headerTitle;
                 document.getElementById('outHeaderSub').innerText = headerSub;
-                document.getElementById('outContact').innerText = contactStr;
+                const shopEl = document.getElementById('outShopMobile');
+                if (shopEl) shopEl.innerText = shopMobileStr;
             }
+
+            const jadhEl = document.getElementById('outJadhagarMobile');
+            if (jadhEl) jadhEl.innerText = jadhagarMobileStr;
             
             document.getElementById('outName').innerText = name;
             document.getElementById('outGender').innerText = gender;
